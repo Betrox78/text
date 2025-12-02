@@ -1,0 +1,7 @@
+-- 1665370446 DOWN boarding-pass-complement-indexes
+DROP INDEX boarding_pass_complement_tracking_code_idx ON boarding_pass_complement;
+DROP INDEX boarding_pass_complement_complement_status_idx ON boarding_pass_complement;
+DROP INDEX boarding_pass_complement_status_idx ON boarding_pass_complement;
+DROP INDEX boarding_pass_complement_created_at_idx ON boarding_pass_complement;
+DROP INDEX boarding_pass_complement_shipping_type_idx ON boarding_pass_complement;
+DROP INDEX boarding_pass_ticket_id_idx ON boarding_pass_ticket;

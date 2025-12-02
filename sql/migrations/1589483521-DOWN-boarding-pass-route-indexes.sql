@@ -1,0 +1,9 @@
+-- 1589483521 DOWN boarding-pass-route-indexes
+DROP INDEX boarding_pass_route_ticket_type_route_idx ON boarding_pass_route;
+DROP INDEX boarding_pass_route_order_route_idx ON boarding_pass_route;
+DROP INDEX boarding_pass_route_route_status_idx ON boarding_pass_route;
+DROP INDEX boarding_pass_route_status_idx ON boarding_pass_route;
+DROP INDEX boarding_pass_route_created_at_idx ON boarding_pass_route;
+
+ALTER TABLE boarding_pass_route
+DROP FOREIGN KEY boarding_pass_route_config_destination_id_fk;

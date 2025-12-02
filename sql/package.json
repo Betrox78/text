@@ -1,0 +1,22 @@
+{
+  "name": "abordo-migrate",
+  "version": "0.0.1",
+  "description": "Abordo migrations",
+  "main": "index.js",
+  "author": "Edgardo Alvarez",
+  "license": "MIT",
+  "private": true,
+  "scripts": {
+    "migrate": "node bin/migrate.js",
+    "rollback": "node bin/rollback.js",
+    "status": "node bin/status.js",
+    "new": "db-create"
+  },
+  "dependencies": {
+    "argparse": "^1.0.10",
+    "db-migrator": "^2.3.0",
+    "dotenv": "^6.1.0",
+    "promise-mysql": "^3.3.1",
+    "yarn": "^1.22.4"
+  }
+}

@@ -1,0 +1,10 @@
+-- 1590079256 DOWN boarding-pass-ticket-indexes
+DROP INDEX boarding_pass_ticket_tracking_code_idx ON boarding_pass_ticket;
+DROP INDEX boarding_pass_ticket_ticket_status_idx ON boarding_pass_ticket;
+DROP INDEX boarding_pass_ticket_status_idx ON boarding_pass_ticket;
+DROP INDEX boarding_pass_ticket_checkedin_at_idx ON boarding_pass_ticket;
+DROP INDEX boarding_pass_ticket_check_in_idx ON boarding_pass_ticket;
+DROP INDEX boarding_pass_ticket_seat_idx ON boarding_pass_ticket;
+DROP INDEX boarding_pass_ticket_rfid_1_idx ON boarding_pass_ticket;
+DROP INDEX boarding_pass_ticket_rfid_2_idx ON boarding_pass_ticket;
+DROP INDEX boarding_pass_ticket_created_at_idx ON boarding_pass_ticket;

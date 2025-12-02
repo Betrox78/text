@@ -1,0 +1,2 @@
+-- 1544468427 UP AddInsert-PetsCost-GeneralSettings
+INSERT INTO `general_setting` (`FIELD`, `value`, `type_field`, `required_field`, `description`, `value_default`, `label_text`) VALUES ('pets_cost', '50', 'double', '1', 'Costo de servicio de Mascotas', '0', 'Costo de transporte de Mascosta');

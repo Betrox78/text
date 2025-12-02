@@ -1,0 +1,616 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.19.1.final using JasperReports Library version 6.19.1-867c00bf88cd4d784d404379d6c05e1b419e8a4c  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="GuiasPrepago" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="8d50eeef-9fe6-49c3-9203-0822c215cb33">
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="MysqlAbordo"/>
+	<parameter name="Parameter1" class="java.lang.String"/>
+	<parameter name="guiapp_code" class="java.lang.String"/>
+	<parameter name="tracking_code" class="java.lang.String"/>
+	<parameter name="fecha" class="java.lang.String"/>
+	<parameter name="hora" class="java.lang.String"/>
+    <parameter name="rango_km" class="java.lang.String"/>
+    <parameter name="shipment_type" class="java.lang.String"/>
+    <parameter name="payment_condition" class="java.lang.String"/>
+
+    <parameter name="guiapp_code_2" class="java.lang.String"/>
+	<parameter name="tracking_code_2" class="java.lang.String"/>
+	<parameter name="fecha_2" class="java.lang.String"/>
+	<parameter name="hora_2" class="java.lang.String"/>
+    <parameter name="rango_km_2" class="java.lang.String"/>
+    <parameter name="shipment_type_2" class="java.lang.String"/>
+    <parameter name="payment_condition_2" class="java.lang.String"/>
+
+	<queryString language="SQL">
+		<![CDATA[select  ppd.id id_ppd, pp.tracking_code, ppd.guiapp_code, pp.created_at, pp.created_at,pkm.min_km, pkm.max_km,pp.shipment_type, pp.payment_condition, u.name 
+	from parcels_prepaid_detail ppd
+	INNER JOIN parcels_prepaid AS pp ON pp.id = ppd.parcel_prepaid_id
+	INNER JOIN pp_price_km AS pkm ON  pkm.id = ppd.price_km_id 
+	INNER JOIN users AS u ON pp.crated_by = u.id
+	WHERE pp.id = $P{guiapp_code};]]>
+	</queryString>
+	<field name="id" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.name" value="id"/>
+		<property name="com.jaspersoft.studio.field.label" value="id"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="parcels_prepaid_detail"/>
+	</field>
+	<field name="guiapp_code" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="guiapp_code"/>
+		<property name="com.jaspersoft.studio.field.label" value="guiapp_code"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="parcels_prepaid_detail"/>
+	</field>
+	<field name="tracking_code" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="tracking_code"/>
+		<property name="com.jaspersoft.studio.field.label" value="tracking_code"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="parcels_prepaid_detail"/>
+	</field>
+	<field name="fecha" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="fecha"/>
+		<property name="com.jaspersoft.studio.field.label" value="fecha"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="parcels_prepaid_detail"/>
+	</field>
+	<field name="hora" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="hora"/>
+		<property name="com.jaspersoft.studio.field.label" value="hora"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="parcels_prepaid_detail"/>
+	</field>
+    	<field name="rango_km" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="rango_km"/>
+		<property name="com.jaspersoft.studio.field.label" value="rango_km"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="parcels_prepaid_detail"/>
+	</field>
+    </field>
+    	<field name="shipment_type" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="shipment_type"/>
+		<property name="com.jaspersoft.studio.field.label" value="shipment_type"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="parcels_prepaid_detail"/>
+	</field>
+    </field>
+    	<field name="payment_condition" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="payment_condition"/>
+		<property name="com.jaspersoft.studio.field.label" value="payment_condition"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="parcels_prepaid_detail"/>
+	</field>
+
+    <field name="guiapp_code_2" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="guiapp_code_2"/>
+		<property name="com.jaspersoft.studio.field.label" value="guiapp_code_2"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="parcels_prepaid_detail"/>
+	</field>
+	<field name="tracking_code_2" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="tracking_code_2"/>
+		<property name="com.jaspersoft.studio.field.label" value="tracking_code_2"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="parcels_prepaid_detail"/>
+	</field>
+	<field name="fecha_2" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="fecha_2"/>
+		<property name="com.jaspersoft.studio.field.label" value="fecha_2"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="parcels_prepaid_detail"/>
+	</field>
+	<field name="hora_2" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="hora_2"/>
+		<property name="com.jaspersoft.studio.field.label" value="hora_2"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="parcels_prepaid_detail"/>
+	</field>
+    	<field name="rango_km_2" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="rango_km_2"/>
+		<property name="com.jaspersoft.studio.field.label" value="rango_km_2"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="parcels_prepaid_detail"/>
+	</field>
+    </field>
+    	<field name="shipment_type_2" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="shipment_type_2"/>
+		<property name="com.jaspersoft.studio.field.label" value="shipment_type_2"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="parcels_prepaid_detail"/>
+	</field>
+    </field>
+    	<field name="payment_condition_2" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="payment_condition_2"/>
+		<property name="com.jaspersoft.studio.field.label" value="payment_condition_2"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="parcels_prepaid_detail"/>
+	</field>    
+
+
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="433" splitType="Stretch">
+			<textField>
+				<reportElement x="352" y="0" width="162" height="20" forecolor="#2A3A99" uuid="20e2e124-e9ed-4f65-a774-300091512340"/>
+				<textFieldExpression><![CDATA["PAQUETERIA PTX S.A. DE C.V."]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="363" y="10" width="170" height="16" forecolor="#2A3A99" uuid="e607e912-3726-489d-836f-224956b372f2"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA["R .F.C . P P A -1 9 0 5 1 5 -V 1 6"]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="297" y="20" width="280" height="15" forecolor="#2A3A99" uuid="6a1bf834-5a6d-43dc-b33c-f51739300c75"/>
+				<textElement>
+					<font size="7"/>
+				</textElement>
+				<text><![CDATA[Ig n a c io Z a ra g o z a 2 4 0 N te . C o l. C e n tro L o s M o c h is , S in a lo a]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="342" y="30" width="280" height="15" forecolor="#2A3A99" uuid="d93163a1-900a-467a-9325-c2be658d66fe"/>
+				<textElement>
+					<font size="7"/>
+				</textElement>
+				<text><![CDATA[M e x ic o . C .P. 8 1 2 0 0 Te l. (6 6 8 ) 6 8 8 6 3 0 3]]></text>
+			</staticText>
+			<line>
+				<reportElement x="-17" y="82" width="577" height="1" forecolor="#2A3A99" uuid="94881bcf-3844-43ed-85a3-aab6a506ce0b"/>
+			</line>
+			<staticText>
+				<reportElement x="-1" y="83" width="29" height="15" forecolor="#2A3A99" uuid="1b2ea52e-cc70-440e-ae15-3ba337dc809a"/>
+				<text><![CDATA[Folio:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="280" y="84" width="40" height="15" forecolor="#2A3A99" uuid="25928ffa-89b9-43d6-8bc4-6d20b40c5936"/>
+				<text><![CDATA[Fecha:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="450" y="83" width="29" height="15" forecolor="#2A3A99" uuid="f2391034-ed12-4e04-91d9-afd5dc211851"/>
+				<text><![CDATA[Folio:]]></text>
+			</staticText>
+			<line>
+				<reportElement x="-15" y="111" width="577" height="1" forecolor="#2A3A99" uuid="2e512f6d-d838-4ebd-a98a-461de9b74769"/>
+			</line>
+			<staticText>
+				<reportElement x="1" y="113" width="61" height="23" forecolor="#2A3A99" uuid="906327a1-6eb9-45de-9618-c80f5ccc711e"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<text><![CDATA[Origen:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="280" y="117" width="61" height="23" forecolor="#2A3A99" uuid="36e6b682-0b69-4787-8c61-ea8d003ebeef"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<text><![CDATA[Destino:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1" y="130" width="60" height="15" forecolor="#2A3A99" uuid="d90b0dfe-9a4c-41b7-8cff-7798181298ae"/>
+				<text><![CDATA[Remitente:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="145" width="60" height="15" forecolor="#2A3A99" uuid="44c6b13d-0f80-4ada-b8b2-f1e92a32b601"/>
+				<text><![CDATA[Domicilio:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="2" y="165" width="60" height="15" forecolor="#2A3A99" uuid="832adb27-bfce-4b2d-b36e-e3e5e97decb3"/>
+				<text><![CDATA[Tel:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="281" y="130" width="71" height="15" forecolor="#2A3A99" uuid="21fca9d4-92b4-4c6a-ac4a-b9ffb2a768d2"/>
+				<text><![CDATA[Destinatario:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="281" y="140" width="60" height="15" forecolor="#2A3A99" uuid="c4a70af0-fa4d-409d-b52f-97bd6dc8093d"/>
+				<text><![CDATA[Domicilio:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="281" y="150" width="60" height="15" forecolor="#2A3A99" uuid="d5c2e35d-1bda-4997-9ae6-9125ff1b9428"/>
+				<text><![CDATA[Tel:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="281" y="162" width="82" height="15" forecolor="#2A3A99" uuid="d9bb81ca-964d-432e-83e5-3ac9bb292a78"/>
+				<text><![CDATA[Rango de km:]]></text>
+			</staticText>
+			<line>
+				<reportElement x="-10" y="180" width="577" height="1" forecolor="#2A3A99" uuid="898c590f-8345-4774-b34e-46088f15fcea"/>
+			</line>
+			<staticText>
+				<reportElement x="281" y="188" width="99" height="15" forecolor="#2A3A99" uuid="e4291e6f-e2d9-41c6-8028-cd11e9e52f74"/>
+				<text><![CDATA[Tipo de Servicio:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1" y="188" width="99" height="15" forecolor="#2A3A99" uuid="e22935e5-41a9-4bfe-af65-1de244bcb746"/>
+				<text><![CDATA[Clave de rastreo:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="281" y="201" width="119" height="15" forecolor="#2A3A99" uuid="3225d312-6104-4d4c-a9c5-3a076fcae3c8"/>
+				<text><![CDATA[Condiciones de pago:]]></text>
+			</staticText>
+			<line>
+				<reportElement x="-9" y="216" width="577" height="1" forecolor="#2A3A99" uuid="93071dea-35fb-40bd-950b-a2586af74263"/>
+			</line>
+			<staticText>
+				<reportElement x="80" y="304" width="92" height="15" forecolor="#2A3A99" uuid="59ed42ba-dd77-4dce-9cd3-93028e9d9d3b"/>
+				<text><![CDATA[OBSERVACIONES]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="80" y="314" width="110" height="15" forecolor="#2A3A99" uuid="d1cd3415-ef20-45ff-88ea-93a11dc6b6e9"/>
+				<text><![CDATA[VALOR DECLARADO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="80" y="324" width="110" height="15" forecolor="#2A3A99" uuid="7be2068b-bc87-47cd-b21a-a6e2ce73ce80"/>
+				<text><![CDATA[DOCUMENTADOR]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="80" y="336" width="110" height="15" forecolor="#2A3A99" uuid="168f10e8-b8f9-4590-b3e6-e706f1995db7"/>
+				<text><![CDATA[FECHA DE ENTREGA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="134" y="350" width="155" height="15" forecolor="#2A3A99" uuid="a2feb024-d9dc-4049-96c9-16d2976c065c"/>
+				<textElement>
+					<font size="7"/>
+				</textElement>
+				<text><![CDATA[Este documento no es un documento fiscal]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="120" y="355" width="191" height="15" forecolor="#2A3A99" uuid="7fbdcba6-25a4-469c-a57e-cac292a456ba"/>
+				<textElement>
+					<font size="7"/>
+				</textElement>
+				<text><![CDATA[Factura en linea: www.allabordo.com/solicitarfactura]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="80" y="363" width="231" height="15" forecolor="#2A3A99" uuid="3a49e66a-2b25-4030-b199-ebeb1c1a9080"/>
+				<textElement>
+					<font size="7"/>
+				</textElement>
+				<text><![CDATA[El cliente acepta las politicas de nuestro servicio estipuladas en]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="132" y="370" width="159" height="15" forecolor="#2A3A99" uuid="b07423d0-e9f9-4973-9dcc-b0b820f9ab12"/>
+				<textElement>
+					<font size="7"/>
+				</textElement>
+				<text><![CDATA[HTTPS://WWW.ALLABORDO.COM/TERMINOS]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1" y="222" width="99" height="15" forecolor="#2A3A99" uuid="85604584-be72-4b1c-be16-b894dc32a80c"/>
+				<text><![CDATA[CONTENIDO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="317" y="220" width="99" height="15" forecolor="#2A3A99" uuid="b507a878-a961-4423-9a5b-e5373e4a1581"/>
+				<text><![CDATA[PESOS Y MEDIDAS]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="240" width="28" height="15" forecolor="#2A3A99" uuid="39e376a5-6bd8-4538-8692-37eb9b085971"/>
+				<text><![CDATA[CANT]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="33" y="240" width="77" height="15" forecolor="#2A3A99" uuid="691d9825-d47c-4330-88ff-767390493528"/>
+				<text><![CDATA[DESCRIPCION]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="110" y="240" width="110" height="15" forecolor="#2A3A99" uuid="92cdc685-3f6e-45df-a99f-64379e25984a"/>
+				<text><![CDATA[DICE QUE CONTIENE]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="224" y="240" width="46" height="15" forecolor="#2A3A99" uuid="2c2cceb2-56f9-4c29-8e83-8b7052cf4461"/>
+				<text><![CDATA[TARIFA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="280" y="240" width="46" height="15" forecolor="#2A3A99" uuid="d3da2033-abfe-4b06-ae41-3a6100037d2d"/>
+				<text><![CDATA[M3]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="328" y="240" width="46" height="15" forecolor="#2A3A99" uuid="b4421f9e-f417-4309-b545-5c183e34e57d"/>
+				<text><![CDATA[PESO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="380" y="237" width="46" height="15" forecolor="#2A3A99" uuid="4df828bd-500b-46f8-9941-571b4f510161"/>
+				<text><![CDATA[PRECIO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="381" y="247" width="46" height="15" forecolor="#2A3A99" uuid="7321daae-06bf-4e78-9e9c-4edd329c81a6"/>
+				<text><![CDATA[TOTAL]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="334" y="300" width="46" height="15" forecolor="#2A3A99" uuid="ff8ea788-f891-4f71-b0e3-43f1e2397d6a"/>
+				<text><![CDATA[FLETE]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="334" y="312" width="66" height="15" forecolor="#2A3A99" uuid="1991a36b-cf9a-43ea-a611-ee440e13fc54"/>
+				<text><![CDATA[SEGURO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="334" y="323" width="76" height="15" forecolor="#2A3A99" uuid="e97a3085-f64f-41d9-b5a9-5ae1aa9a3fd7"/>
+				<text><![CDATA[ADICIONALES]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="335" y="333" width="46" height="15" forecolor="#2A3A99" uuid="4469273c-40f6-4997-843b-faa2845696f7"/>
+				<text><![CDATA[IVA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="334" y="344" width="82" height="15" forecolor="#2A3A99" uuid="550f8a0f-b775-40ec-a990-df59be23290e"/>
+				<text><![CDATA[DESCUENTO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="334" y="358" width="46" height="15" forecolor="#2A3A99" uuid="a31e20fc-3a29-4ee0-b6b8-d5de5159f032"/>
+				<text><![CDATA[TOTAL]]></text>
+			</staticText>
+			<line>
+				<reportElement x="-9" y="381" width="577" height="1" forecolor="#2A3A99" uuid="f0dd9c5e-ea45-4167-b6a8-f467ec54c75e"/>
+				<graphicElement>
+					<pen lineStyle="Dashed"/>
+				</graphicElement>
+			</line>
+			<image>
+				<reportElement x="1" y="-3" width="247" height="60" uuid="790d403e-2d74-4dbf-a60f-5f475899ba52"/>
+				<imageExpression><![CDATA["image (3).png"]]></imageExpression>
+			</image>
+			<textField>
+				<reportElement x="29" y="84" width="100" height="20" forecolor="#2A3A99" uuid="580716d3-fa75-4627-bc13-306bab954495"/>
+				<textFieldExpression><![CDATA[$F{tracking_code}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="91" y="189" width="100" height="20" forecolor="#2A3A99" uuid="479adabe-c256-4fae-8191-fd90d976ff3b"/>
+				<textFieldExpression><![CDATA[$F{guiapp_code}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="316" y="84" width="100" height="20" forecolor="#2A3A99" uuid="9b4dadac-49df-4c02-9259-5dfb8f2f9700"/>
+				<textFieldExpression><![CDATA[$F{fecha}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="478" y="84" width="100" height="20" forecolor="#2A3A99" uuid="f963f873-3d55-4471-8eb3-99677d1c991b"/>
+				<textFieldExpression><![CDATA[$F{hora}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="354" y="163" width="100" height="20" forecolor="#2A3A99" uuid="8af51990-8f29-43db-acb5-91f380f2a517"/>
+				<textFieldExpression><![CDATA[$F{rango_km}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="365" y="188" width="100" height="20" forecolor="#2A3A99" uuid="c85c2518-6cc5-467d-afb7-3bca8a2e909c"/>
+				<textFieldExpression><![CDATA[$F{shipment_type}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="391" y="202" width="124" height="20" forecolor="#2A3A99" uuid="02959916-e0e8-40af-aef7-b2c2ed1bc43e"/>
+				<textFieldExpression><![CDATA[$F{payment_condition}]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<columnHeader>
+		<band height="369">
+			<textField>
+				<reportElement x="353" y="-44" width="162" height="20" forecolor="#2A3A99" uuid="6d72bfdb-dc3e-4aa0-a8bb-ae8b175dc25c"/>
+				<textFieldExpression><![CDATA["PAQUETERIA PTX S.A. DE C.V."]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="364" y="-34" width="170" height="16" forecolor="#2A3A99" uuid="ba26eadd-df22-4215-b231-c4dd3107dd1a"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA["R .F.C . P P A -1 9 0 5 1 5 -V 1 6"]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="39" width="29" height="15" forecolor="#2A3A99" uuid="75b9c047-d270-4e42-92f5-e0104838f904"/>
+				<text><![CDATA[Folio:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="281" y="40" width="40" height="15" forecolor="#2A3A99" uuid="3cb4b736-ce42-44e9-bbc4-8c87af22592e"/>
+				<text><![CDATA[Fecha:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="451" y="39" width="29" height="15" forecolor="#2A3A99" uuid="fed52186-19cc-4484-946b-6a2711d5e2f9"/>
+				<text><![CDATA[Folio:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="2" y="69" width="61" height="23" forecolor="#2A3A99" uuid="82a0a4d1-8602-480a-a154-cfccba77f60c"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<text><![CDATA[Origen:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="281" y="73" width="61" height="23" forecolor="#2A3A99" uuid="ab93eada-f13e-423a-b997-2d66050c540c"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<text><![CDATA[Destino:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="2" y="86" width="60" height="15" forecolor="#2A3A99" uuid="62f0fe62-d622-47b0-88e6-36b0047d90ce"/>
+				<text><![CDATA[Remitente:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="2" y="101" width="60" height="15" forecolor="#2A3A99" uuid="1592a26c-1629-41e7-b43f-f285f50980df"/>
+				<text><![CDATA[Domicilio:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="3" y="121" width="60" height="15" forecolor="#2A3A99" uuid="51a5fefa-fc72-4c1c-a058-61b0ef0b2c0b"/>
+				<text><![CDATA[Tel:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="282" y="86" width="71" height="15" forecolor="#2A3A99" uuid="c97d50e1-599c-4c08-af99-02e8b8c9641d"/>
+				<text><![CDATA[Destinatario:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="282" y="96" width="60" height="15" forecolor="#2A3A99" uuid="0a70721d-6ed0-4b50-a689-ad90e15e0c25"/>
+				<text><![CDATA[Domicilio:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="282" y="106" width="60" height="15" forecolor="#2A3A99" uuid="8a97c997-cffe-41b3-92cf-88cf43556139"/>
+				<text><![CDATA[Tel:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="282" y="118" width="82" height="15" forecolor="#2A3A99" uuid="49f8f8bc-44e6-49c7-8955-91adc9ea3f43"/>
+				<text><![CDATA[Rango de km:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="282" y="144" width="99" height="15" forecolor="#2A3A99" uuid="45b7f9ec-f7c2-4809-b596-bcb1ea207ab9"/>
+				<text><![CDATA[Tipo de Servicio:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="2" y="144" width="99" height="15" forecolor="#2A3A99" uuid="6e41aaba-a5b8-49d2-8a4b-8f295880c386"/>
+				<text><![CDATA[Clave de rastreo:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="282" y="157" width="119" height="15" forecolor="#2A3A99" uuid="a09eea0e-b036-4b07-9bc8-7e885b623851"/>
+				<text><![CDATA[Condiciones de pago:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="81" y="260" width="92" height="15" forecolor="#2A3A99" uuid="d07c1125-d335-48d6-91ac-dac768a9eabb"/>
+				<text><![CDATA[OBSERVACIONES]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="81" y="270" width="110" height="15" forecolor="#2A3A99" uuid="9008d5d4-63d8-4236-95cc-740ab85fad55"/>
+				<text><![CDATA[VALOR DECLARADO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="81" y="280" width="110" height="15" forecolor="#2A3A99" uuid="6f0f111b-8f0f-4103-80dd-8d71ab9e59a0"/>
+				<text><![CDATA[DOCUMENTADOR]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="81" y="292" width="110" height="15" forecolor="#2A3A99" uuid="3dc3284d-c65a-4072-b2ba-7d3142335212"/>
+				<text><![CDATA[FECHA DE ENTREGA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="135" y="303" width="155" height="15" forecolor="#2A3A99" uuid="fef4beb3-8baf-4500-95a2-99831dfd6b74"/>
+				<textElement>
+					<font size="7"/>
+				</textElement>
+				<text><![CDATA[Este documento no es un documento fiscal]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="125" y="310" width="191" height="15" forecolor="#2A3A99" uuid="ff0587f6-6dca-43be-81cd-cf854ba882bd"/>
+				<textElement>
+					<font size="7"/>
+				</textElement>
+				<text><![CDATA[Factura en linea: www.allabordo.com/solicitarfactura]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="2" y="178" width="99" height="15" forecolor="#2A3A99" uuid="83840b2e-55c8-40c9-b371-290744740bb0"/>
+				<text><![CDATA[CONTENIDO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="318" y="176" width="99" height="15" forecolor="#2A3A99" uuid="46c8a613-7ef7-4a55-8900-db5b3637f1d9"/>
+				<text><![CDATA[PESOS Y MEDIDAS]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1" y="196" width="28" height="15" forecolor="#2A3A99" uuid="3b6ff3fe-9cc1-422a-9473-b0d2148032f9"/>
+				<text><![CDATA[CANT]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="34" y="196" width="77" height="15" forecolor="#2A3A99" uuid="064218fb-27a0-4f8c-9ff8-cc82136e54e4"/>
+				<text><![CDATA[DESCRIPCION]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="111" y="196" width="110" height="15" forecolor="#2A3A99" uuid="04238163-9d87-4eab-9324-e21cd6595a2f"/>
+				<text><![CDATA[DICE QUE CONTIENE]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="225" y="196" width="46" height="15" forecolor="#2A3A99" uuid="f92867a2-eacd-403c-a4be-bb2635b490a2"/>
+				<text><![CDATA[TARIFA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="281" y="196" width="46" height="15" forecolor="#2A3A99" uuid="daad951c-ac1d-40c7-87e0-25fc4c7c1e84"/>
+				<text><![CDATA[M3]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="329" y="196" width="46" height="15" forecolor="#2A3A99" uuid="c2c8c129-d48d-4496-88ab-da2af19ba71f"/>
+				<text><![CDATA[PESO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="381" y="193" width="46" height="15" forecolor="#2A3A99" uuid="ef883966-fe6e-40da-8072-34db50d694fd"/>
+				<text><![CDATA[PRECIO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="382" y="203" width="46" height="15" forecolor="#2A3A99" uuid="336c1c29-f148-41ec-9e81-ec6ceae70513"/>
+				<text><![CDATA[TOTAL]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="335" y="256" width="46" height="15" forecolor="#2A3A99" uuid="e6e38efe-1473-4267-9b8a-b0d3a2b9f780"/>
+				<text><![CDATA[FLETE]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="335" y="268" width="66" height="15" forecolor="#2A3A99" uuid="94e7fbad-db39-463e-807a-87e6ea5965fa"/>
+				<text><![CDATA[SEGURO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="335" y="279" width="76" height="15" forecolor="#2A3A99" uuid="34e688c7-1dda-41ca-845d-59f7f23c7200"/>
+				<text><![CDATA[ADICIONALES]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="336" y="289" width="46" height="15" forecolor="#2A3A99" uuid="2ffe1a1f-d8b7-4f50-858e-66ca778aa7d3"/>
+				<text><![CDATA[IVA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="335" y="300" width="82" height="15" forecolor="#2A3A99" uuid="54b5b738-cc2d-4924-ba91-4ed94a68f762"/>
+				<text><![CDATA[DESCUENTO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="335" y="312" width="46" height="15" forecolor="#2A3A99" uuid="3f5c7266-dee2-4d1a-96d6-b5f4619ee08c"/>
+				<text><![CDATA[TOTAL]]></text>
+			</staticText>
+			<line>
+				<reportElement x="-15" y="30" width="577" height="1" forecolor="#2A3A99" uuid="a64aeeac-cac7-4232-8324-361db94572f3"/>
+			</line>
+			<staticText>
+				<reportElement x="299" y="-26" width="280" height="15" forecolor="#2A3A99" uuid="422f8b05-b6e0-4e30-a129-d586e38605c4"/>
+				<textElement>
+					<font size="7"/>
+				</textElement>
+				<text><![CDATA[Ig n a c io Z a ra g o z a 2 4 0 N te . C o l. C e n tro L o s M o c h is , S in a lo a]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="346" y="-15" width="280" height="15" forecolor="#2A3A99" uuid="e91198c6-6700-4bc5-b2d7-b71100d0309e"/>
+				<textElement>
+					<font size="7"/>
+				</textElement>
+				<text><![CDATA[M e x ic o . C .P. 8 1 2 0 0 Te l. (6 6 8 ) 6 8 8 6 3 0 3]]></text>
+			</staticText>
+			<line>
+				<reportElement x="-17" y="54" width="577" height="1" forecolor="#2A3A99" uuid="0a7e7f3e-a01f-42cb-b51e-0b5c335a2be7"/>
+			</line>
+			<line>
+				<reportElement x="-11" y="132" width="577" height="1" forecolor="#2A3A99" uuid="f846d4f3-bacd-4c18-8ae7-0bc08ae56b89"/>
+			</line>
+			<line>
+				<reportElement x="-15" y="170" width="577" height="1" forecolor="#2A3A99" uuid="9133a99c-e83c-4e09-b3dc-29720f07dfb2"/>
+			</line>
+			<staticText>
+				<reportElement x="101" y="320" width="231" height="15" forecolor="#2A3A99" uuid="e6370a4f-0b8e-4f3e-8728-b311a2cb87dd"/>
+				<textElement>
+					<font size="7"/>
+				</textElement>
+				<text><![CDATA[El cliente acepta las politicas de nuestro servicio estipuladas en]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="151" y="327" width="159" height="15" forecolor="#2A3A99" uuid="2c30e965-5314-4fd7-af71-1439616a1d4d"/>
+				<textElement>
+					<font size="7"/>
+				</textElement>
+				<text><![CDATA[HTTPS://WWW.ALLABORDO.COM/TERMINOS]]></text>
+			</staticText>
+			<image>
+				<reportElement x="2" y="-50" width="247" height="60" uuid="6d692eb0-d3d0-4edd-93ae-248e934999ba"/>
+				<imageExpression><![CDATA["image (3).png"]]></imageExpression>
+			</image>
+			<textField>
+				<reportElement x="91" y="144" width="100" height="20" forecolor="#2A3A99" uuid="964eed04-986a-4f3b-9a7b-b494edf71fef"/>
+				<textFieldExpression><![CDATA[$F{guiapp_code_2}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="30" y="40" width="110" height="20" forecolor="#2A3A99" uuid="fe8d2cf6-3673-4135-bf37-bd0118888cce"/>
+				<textFieldExpression><![CDATA[$F{tracking_code_2}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="318" y="40" width="100" height="20" forecolor="#2A3A99" uuid="a20fb943-fae8-4d29-9086-80d1527e2d24"/>
+				<textFieldExpression><![CDATA[$F{fecha_2}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="481" y="39" width="100" height="20" forecolor="#2A3A99" uuid="ea1e4989-7281-4e52-a343-2d54108b18eb"/>
+				<textFieldExpression><![CDATA[$F{hora_2}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="353" y="118" width="100" height="20" forecolor="#2A3A99" uuid="04ee1b85-007e-4b1c-b748-51a688769f0b"/>
+				<textFieldExpression><![CDATA[$F{rango_km_2}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="368" y="144" width="122" height="20" forecolor="#2A3A99" uuid="c6e671e0-ba41-4a7d-9dd5-1cd62c38e17e"/>
+				<textFieldExpression><![CDATA[$F{shipment_type_2}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="392" y="158" width="142" height="20" forecolor="#2A3A99" uuid="04cd3fe4-6642-4a78-8c79-43431abd707b"/>
+				<textFieldExpression><![CDATA[$F{payment_condition_2}]]></textFieldExpression>
+			</textField>
+		</band>
+	</columnHeader>
+</jasperReport>

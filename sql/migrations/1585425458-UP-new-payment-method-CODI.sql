@@ -1,0 +1,2 @@
+-- 1585425458 UP new-payment-method-CODI
+INSERT INTO payment_method (name, is_cash, alias, status, icon, allow_origin, created_at, created_by) VALUES ('CODI', '0', 'codi', '1', 'icon-cached', 'pos, admin', now(), '1');

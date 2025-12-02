@@ -1,0 +1,3 @@
+-- 1559081065 DOWN unique-employee-attendance-day
+ALTER TABLE employee_attendance_day
+DROP INDEX employee_attendance_day_attendance_day_employee_id_idx;

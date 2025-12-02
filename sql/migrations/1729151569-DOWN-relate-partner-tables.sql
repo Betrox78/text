@@ -1,0 +1,6 @@
+-- 1729151569 DOWN relate-partner-tables
+DROP INDEX idx_integration_partner_session_api_key_id
+ON integration_partner_session;
+
+ALTER TABLE integration_partner_session
+DROP COLUMN integration_partner_api_key_id;

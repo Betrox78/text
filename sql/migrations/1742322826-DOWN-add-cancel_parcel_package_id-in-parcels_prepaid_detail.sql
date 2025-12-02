@@ -1,0 +1,4 @@
+-- 1742322826 DOWN add cancel_parcel_package_id in parcels_prepaid_detail
+ALTER TABLE parcels_prepaid_detail
+DROP CONSTRAINT parcels_prepaid_detail_cancel_parcel_package_id,
+DROP COLUMN cancel_parcel_package_id;

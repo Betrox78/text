@@ -1,0 +1,5 @@
+-- 1587151664 DOWN contpaq-add-indexes
+DROP INDEX CONTPAQ_ClientesProvedores_estatusServicio_idx ON CONTPAQ_ClientesProvedores;
+DROP INDEX CONTPAQ_Documentos_estatusServicio_idx ON CONTPAQ_Documentos;
+DROP INDEX CONTPAQ_Movimientos_estatusServicio_idx ON CONTPAQ_Movimientos;
+DROP INDEX CONTPAQ_Productos_estatusServicio_idx ON CONTPAQ_Productos;

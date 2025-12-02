@@ -1,0 +1,2 @@
+-- 1545171464 UP add-general-setting-boarding-cancelation-time
+INSERT INTO general_setting(FIELD, value, type_field, required_field, description, value_default, label_text, order_field, type_setting, group_type) VALUES('boarding_cancelation_time', '300000', 'long', 1, 'Tiempo en milisegundos para la cancelación de la reservación', '300000', 'Tiempo en milisegundos para la cancelación de reservación', 11, '1', 'tickets');

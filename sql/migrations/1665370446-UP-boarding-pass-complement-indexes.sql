@@ -1,0 +1,7 @@
+-- 1665370446 UP boarding-pass-complement-indexes
+CREATE INDEX boarding_pass_complement_tracking_code_idx ON boarding_pass_complement(tracking_code);
+CREATE INDEX boarding_pass_complement_complement_status_idx ON boarding_pass_complement(complement_status);
+CREATE INDEX boarding_pass_complement_status_idx ON boarding_pass_complement(status);
+CREATE INDEX boarding_pass_complement_created_at_idx ON boarding_pass_complement(created_at);
+CREATE INDEX boarding_pass_complement_shipping_type_idx ON boarding_pass_complement(shipping_type);
+CREATE INDEX boarding_pass_ticket_id_idx ON boarding_pass_ticket(id);

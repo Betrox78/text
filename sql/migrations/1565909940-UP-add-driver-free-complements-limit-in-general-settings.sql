@@ -1,0 +1,3 @@
+-- 1565909940 UP add driver free complements limit in general settings
+INSERT INTO general_setting (FIELD, value, type_field, description, value_default, label_text, explanation_text, type_setting, group_type, created_by) VALUES
+('driver_free_complements_limit', '2', 'number', 'Cantidad de maletas sin costo permitidas por boleto vendido por chofer', '2', 'Cantidad de maletas sin costo permitidas por boleto vendido por chofer', '', '0', 'travel', 1);

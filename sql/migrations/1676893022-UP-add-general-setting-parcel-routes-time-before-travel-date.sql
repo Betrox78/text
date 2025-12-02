@@ -1,0 +1,3 @@
+-- 1676893022 UP add general setting parcel routes time before travel date
+INSERT INTO general_setting
+    (`id`, `FIELD`, `value`, `type_field`, `required_field`, `description`, `value_default`, `label_text`, `explanation_text`, `type_setting`, `group_type`, `status`, `created_by`) VALUES ('86', 'parcel_routes_time_before_travel_date', '30', 'number', '0', 'PAQUETERIA POS y APP Minutos de limite para mostrar rutas antes de su horario de salida', '30', 'PAQUETERIA POS y APP Minutos previos de consulta de rutas', '', '0', 'travel', '1', '1');

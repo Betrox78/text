@@ -1,0 +1,2 @@
+-- 1699136330 DOWN seed config_branchoffices_travel_type
+TRUNCATE config_branchoffices_travel_type;

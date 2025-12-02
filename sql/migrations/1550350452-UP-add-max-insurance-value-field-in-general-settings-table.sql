@@ -1,0 +1,3 @@
+-- 1550350452 UP add-max-insurance-value-field-in-general-settings-table
+INSERT INTO `general_setting` (`FIELD`, `value`, `type_field`, `required_field`, `description`, `value_default`, `label_text`, `order_field`, `group_type`, `type_setting`)
+VALUES ('max_insurance_value', '50000', 'number', '1', 'Cantidad máxima para asegurar una carta porte', '50000', 'Cantidad máxima para asegurar una carta porte', 0,'parcel', '0');

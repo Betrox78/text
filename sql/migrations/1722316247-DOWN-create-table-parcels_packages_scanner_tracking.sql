@@ -1,0 +1,3 @@
+-- 1722316247 DOWN create table parcels_packages_scanner_tracking
+DELETE FROM parcels_packages_scanner_tracking;
+DROP TABLE parcels_packages_scanner_tracking;

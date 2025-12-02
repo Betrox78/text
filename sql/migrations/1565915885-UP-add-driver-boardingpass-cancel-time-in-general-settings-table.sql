@@ -1,0 +1,3 @@
+-- 1565915885 UP add driver boardingpass cancel time in general settings table
+INSERT INTO general_setting (FIELD, value, type_field, description, value_default, label_text, explanation_text, type_setting, group_type, created_by) VALUES
+('driver_boardingpass_cancel_time', '300000', 'long', 'Periodo en milisegundos para cancelar la reservacion vendida por chofer si no es pagada', '300000', 'Periodo en milisegundos para cancelar la reservacion vendida por chofer si no es pagada', '', '0', 'travel', 1);

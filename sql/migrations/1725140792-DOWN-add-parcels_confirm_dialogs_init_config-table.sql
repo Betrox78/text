@@ -1,0 +1,2 @@
+-- 1725140792 DOWN add parcels_confirm_dialogs_init_config table
+DROP TABLE parcels_confirm_dialogs_init_config;

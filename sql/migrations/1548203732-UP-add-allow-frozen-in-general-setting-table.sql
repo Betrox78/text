@@ -1,0 +1,2 @@
+-- 1548203732 UP add-allow-frozen-in-general-setting-table
+INSERT INTO general_setting(FIELD, value, type_field, required_field, description, value_default, label_text, order_field, type_setting, group_type) VALUES('allow_frozen', '0', 'boolean', 0, 'Nuestros camiones cuentan con servicio de transporte de mascotas (siempre y cuando la unidad tenga la capacidad)', '0', 'Se cuenta con el servicio de carga refrigerada', 0, '0', 'frozen');

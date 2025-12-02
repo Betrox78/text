@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cfdi:Comprobante xmlns:cfdi="http://www.sat.gob.mx/cfd/3" xmlns:cartaporte20="http://www.sat.gob.mx/CartaPorte20" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" Certificado="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" Fecha="2022-01-08T18:58:50" Folio="14" LugarExpedicion="81280" Moneda="XXX" NoCertificado="00001000000500018614" Sello="l2X5vIhQ8IvBgM+BJbouliojgs7dKs0nddRGyN2EXttncSV3qxDNk1TAT9shdoOJ3Rkx3Oy8Sh9NOlFJZl5E+FaYHTuMGNOfD9PrwIkDGfxe9J/suB3LpcXjy1527gdHJ/CZiZm0gDqJo/pEYokt9wsg0z1LGNRfiPLo4DMvWy8jysMtjkbjc7i58ux9Go8QekPQmDur2dAajkVwrOK5xl5uc43LDldWCzkU3GxPYNTsbjnwEYgzv0s14PL+OXwzsXhtbOILprHT2F3GeaCQInMHL2clGep+O2iyGsZjO2Hlkqq8acISVEjEQW6nGLrQiWrl7/I/cTcbWo29NtZDuQ==" Serie="FV/2021/" SubTotal="0.0" TipoDeComprobante="T" Total="0.0" Version="3.3" xsi:schemaLocation="http://www.sat.gob.mx/cfd/3 http://www.sat.gob.mx/sitio_internet/cfd/3/cfdv33.xsd http://www.sat.gob.mx/CartaPorte20 http://www.sat.gob.mx/sitio_internet/cfd/CartaPorte/CartaPorte20.xsd">
+  <cfdi:Emisor Nombre="PTX PAQUETERIA SA DE CV" RegimenFiscal="601" Rfc="PPA190515V16" />
+  <cfdi:Receptor Nombre="Pablo leyva" Rfc="LERP960228961" UsoCFDI="P01" />
+  <cfdi:Conceptos>
+    <cfdi:Concepto Cantidad="1" ClaveProdServ="56112003" ClaveUnidad="E48" Descripcion="Accesorios de almacenamiento de soporte para computadores" Importe="0.0" NoIdentificacion="00000010" Unidad="E48" ValorUnitario="0.0" />
+  </cfdi:Conceptos>
+  <cfdi:Complemento>
+    <cartaporte20:CartaPorte TotalDistRec="220.0" TranspInternac="No" Version="2.0">
+      <cartaporte20:Ubicaciones>
+        <cartaporte20:Ubicacion FechaHoraSalidaLlegada="2022-01-04T02:31:35" IDUbicacion="OR699532" RFCRemitenteDestinatario="LERP960228961" TipoUbicacion="Origen">
+          <cartaporte20:Domicilio Calle="prueba, #123, Primer Cuadro (Centro), Los Mochis, Ahome, Sinaloa, Mexico, CP.81200" CodigoPostal="81200" Colonia="1" Estado="SIN" Localidad="1" Municipio="1" NumeroExterior="123" NumeroInterior="SN" Pais="MEX" />
+        </cartaporte20:Ubicacion>
+        <cartaporte20:Ubicacion DistanciaRecorrida="220.0" FechaHoraSalidaLlegada="2022-01-05T02:31:35" IDUbicacion="DE675602" RFCRemitenteDestinatario="LERP960228961" TipoUbicacion="Destino">
+          <cartaporte20:Domicilio Calle="prueba, #12, Gral. Juan José Ríos, Guasave, Guasave, Sinaloa, Mexico, CP.81110" CodigoPostal="81110" Colonia="4" Estado="SIN" Localidad="4" Municipio="11" NumeroExterior="12" NumeroInterior="SN" Pais="MEX" />
+        </cartaporte20:Ubicacion>
+      </cartaporte20:Ubicaciones>
+      <cartaporte20:Mercancias NumTotalMercancias="1" PesoBrutoTotal="22" UnidadPeso="KGM">
+        <cartaporte20:Mercancia BienesTransp="56112003" Cantidad="1" ClaveUnidad="KGM" Descripcion="56112003-Accesorios de almacenamiento de soporte para computadores" PesoEnKg="22" Unidad="E48">
+          <cartaporte20:CantidadTransporta Cantidad="1" IDDestino="DE675602" IDOrigen="OR699532" />
+        </cartaporte20:Mercancia>
+        <cartaporte20:Autotransporte NumPermisoSCT="PERM011" PermSCT="TPAF01">
+          <cartaporte20:IdentificacionVehicular AnioModeloVM="2019" ConfigVehicular="C2" PlacaVM="788WR12" />
+          <cartaporte20:Seguros AseguraRespCivil="QUALITAS" PolizaRespCivil="1290248524" />
+        </cartaporte20:Autotransporte>
+      </cartaporte20:Mercancias>
+      <cartaporte20:FiguraTransporte>
+        <cartaporte20:TiposFigura NombreFigura="Jorge Abdiel Vega" NumLicencia="022165915" RFCFigura="VELJ910420TP6" TipoFigura="01" />
+      </cartaporte20:FiguraTransporte>
+    </cartaporte20:CartaPorte>
+  </cfdi:Complemento>
+</cfdi:Comprobante>

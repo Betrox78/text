@@ -1,0 +1,1 @@
+-- 1552030930 DOWN add seed auth permissions

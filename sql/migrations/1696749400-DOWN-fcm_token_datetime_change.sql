@@ -1,0 +1,2 @@
+-- 1696749400 DOWN fcm_token_datetime_change
+ALTER TABLE fcm_token MODIFY created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP;

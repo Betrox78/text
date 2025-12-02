@@ -1,0 +1,2 @@
+-- 1571185040 UP update-duplicated-tickets-purchase
+UPDATE tickets SET action='purchase' where id IN (select p.ticket_id from payment AS p inner join parcels as pr on pr.id=p.parcel_id where p.parcel_id IS NOT NULL and pr.pays_sender=0);

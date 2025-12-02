@@ -1,0 +1,3 @@
+-- 1550345566 UP add-insurance-percent-field-in-general-settings-table
+INSERT INTO `general_setting` (`FIELD`, `value`, `type_field`, `required_field`, `description`, `value_default`, `label_text`, `order_field`, `group_type`, `type_setting`)
+VALUES ('insurance_percent', '.008', 'percent', '1', 'Porcentaje del seguro, se aplica el porcentaje al valor declarado (insurance_value) para obtener el costo del seguro (insurance_amount)', '.008', 'Porcentaje de seguro', 0,'parcel', '0');

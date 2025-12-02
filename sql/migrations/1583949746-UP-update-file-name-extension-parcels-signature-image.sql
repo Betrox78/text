@@ -1,0 +1,2 @@
+-- 1583949746 UP update-file-name-extension-parcels-signature-image
+UPDATE parcels_deliveries SET signature = IF(SUBSTRING_INDEX(signature, '.', -1) = 'jpg',signature,CONCAT(signature,'.jpg')) WHERE signature IS NOT NULL;

@@ -1,0 +1,5 @@
+-- 1558838293 DOWN permissions phase 2
+
+DELETE FROM sub_module WHERE id BETWEEN 64 AND 69;
+
+DELETE FROM permission WHERE id BETWEEN 151 AND 163;

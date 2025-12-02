@@ -1,0 +1,15 @@
+-- 1665379617 UP invoices-indexes
+CREATE INDEX boardingpass_invoice_complement_status_idx ON boardingpass_invoice_complement(status);
+CREATE INDEX boardingpass_invoice_complement_status_cfdi_idx ON boardingpass_invoice_complement(status_cfdi);
+CREATE INDEX boardingpass_invoice_complement_tipo_cfdi_idx ON boardingpass_invoice_complement(tipo_cfdi);
+CREATE INDEX boardingpass_invoice_complement_created_at_idx ON boardingpass_invoice_complement(created_at);
+
+CREATE INDEX parcel_invoice_complement_status_idx ON parcel_invoice_complement(status);
+CREATE INDEX parcel_invoice_complement_status_cfdi_idx ON parcel_invoice_complement(status_cfdi);
+CREATE INDEX parcel_invoice_complement_tipo_cfdi_idx ON parcel_invoice_complement(tipo_cfdi);
+CREATE INDEX parcel_invoice_complement_created_at_idx ON parcel_invoice_complement(created_at);
+
+CREATE INDEX guiapp_invoice_complement_status_idx ON guiapp_invoice_complement(status);
+CREATE INDEX guiapp_invoice_complement_status_cfdi_idx ON guiapp_invoice_complement(status_cfdi);
+CREATE INDEX guiapp_invoice_complement_tipo_cfdi_idx ON guiapp_invoice_complement(tipo_cfdi);
+CREATE INDEX guiapp_invoice_complement_created_at_idx ON guiapp_invoice_complement(created_at);

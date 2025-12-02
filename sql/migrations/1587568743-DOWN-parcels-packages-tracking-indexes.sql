@@ -1,0 +1,5 @@
+-- 1587568743 DOWN parcels-packages-tracking-indexes
+DROP INDEX parcels_packages_tracking_status_idx ON parcels_packages_tracking;
+DROP INDEX parcels_packages_tracking_action_idx ON parcels_packages_tracking;
+DROP INDEX parcels_packages_tracking_is_contingency_idx ON parcels_packages_tracking;
+DROP INDEX parcels_packages_tracking_created_at_idx ON parcels_packages_tracking;

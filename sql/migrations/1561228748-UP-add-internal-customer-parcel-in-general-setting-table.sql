@@ -1,0 +1,3 @@
+-- 1561228748 UP add-internal-customer-parcel-in-general-setting-table
+INSERT INTO general_setting (FIELD, value, type_field, description, value_default, label_text, explanation_text, type_setting, group_type, created_by)
+VALUES('internal_customer', '1', 'select', 'Cliente abordo para uso de gíuas internas de paquetería', '1', 'Cliente abordo para uso de gíuas internas de paquetería', 'customer?query=*,status=1', '0', 'general', 1);

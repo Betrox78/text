@@ -1,0 +1,61 @@
+version: 0.1
+monitoring:
+  logs: false
+environment:
+  API_MAIL_HOSTNAME: 'mail.allabordo.com'
+  API_MAIL_PORT: '465'
+  API_MAIL_SSL: 'true'
+  API_MAIL_TLS: 'OPTIONAL'
+  API_DB_SERVER_URL: 'jdbc:mysql://mysql.dev.ptxpaqueteria.com:3306/abordo_develop'
+  API_DB_SERVER_DRIVER: 'com.mysql.jdbc.Driver'
+  API_AUTH_SERVER_HOST: 'auth.dev.ptxpaqueteria.com'
+  API_AUTH_SERVER_PORT: '80'
+  API_DB_SERVER_MAX_POOL_SIZE: '5'
+  API_DB_SERVER_MIN_POOL_SIZE: '1'
+  API_DB_SERVER_INI_POOL_SIZE: '1'
+  API_DB_SERVER_MAX_STATEMENTS: '3'
+  API_DB_SERVER_MAX_STATEMENTS_PER_CONNECTION: '0'
+  API_DB_SERVER_MAX_IDLE_TIME: '7200'
+  WEB_SERVER_HOSTNAME: 'https://dev.ptxpaqueteria.com'
+  SNS_TOPIC_INVOICE: 'FacturacionSNSTopicDevelop'
+  SNS_TOPIC_CUSTOMER: 'CteProvedorSNSTopicDevelop'
+  SELF_SERVER_HOST: 'api.dev.ptxpaqueteria.com'
+  INVOICE_SERVER_HOST: 'api.cfdi.ptxpaqueteria.com'
+  MONGODB_HOST: 'mongodb.dev.ptxpaqueteria.com'
+  MONGODB_PORT: '27017'
+  MONGODB_NAME: 'abordoMultimediaDevelop'
+  DOUBLE_INVOICING: 'true'
+  INVOICE_FILE_HOST: 'https://media.dev.ptxpaqueteria.com/api/v1.0.0/document'
+  INVOICE_PARCEL_SERVER_HOST: 'ptx.cfdi.ptxpaqueteria.com'
+  INVOICE_PARCEL_FILE_HOST: ''
+  VALIDATE_PERIOD_INVOICE: 'false'
+  REGISTER_INVOICES: 'true'
+  INVOICE_PREFIX: 'DEV'
+  CUSTOMER_INVOICE_PREFIX: 'D'
+  INVOICE_PARCEL_PREFIX: 'DEVPTX'
+  RFC_PARCEL: 'XIA190128J61'
+  RFC_BOARDINGPASS: 'XIA190128J61'
+  RFC_NAME_PARCEL: 'XENON INDUSTRIAL ARTICLES'
+  RFC_NAME_BOARDINGPASS: 'XENON INDUSTRIAL ARTICLES'
+  PARCEL_DESTINATION_NAME: "PTX PAQUETERIA"
+  PARCEL_DESTINATION_RFC: "PPA190515V16"
+  TIMBOX_URL: 'https://staging.ws.timbox.com.mx/'
+  BOARDINGPASS_KEYPEM_PATH: '/pruebas/pasaje.key.pem'
+  PARCEL_KEYPEM_PATH: '/pruebas/pasaje.key.pem'
+  INVOICE_INCOME_BASE: '/pruebas/factura_ingreso_4.xml'
+  INVOICE_INCOME_PARCEL: '/pruebas/factura_ingreso_4.xml'
+  INVOICE_CCP_BASE: '/pruebas/factura_traslado_ccp.xml'
+  INVOICE_LAST_MILE_BASE: '/pruebas/factura_traslado_ultima_milla.xml'
+  PAYMENT_COMPLEMENT_BASE: '/pruebas/complemento_pago.xml'
+secrets:
+  API_MAIL_USERNAME: /dev/app/abordo-services/API_MAIL_USERNAME
+  API_MAIL_PASSWORD: /dev/app/abordo-services/API_MAIL_PASSWORD
+  API_DB_SERVER_USER: /dev/app/abordo-services/API_DB_SERVER_USER
+  API_DB_SERVER_PASSWORD: /dev/app/abordo-services/API_DB_SERVER_PASSWORD
+  AWS_SNS_ACCESS_KEY: /dev/app/abordo-services/AWS_SNS_ACCESS_KEY
+  AWS_SNS_SECRET_KEY: /dev/app/abordo-services/AWS_SNS_SECRET_KEY
+  CONEKTA_API_KEY: /dev/app/abordo-services/CONEKTA_API_KEY
+  GOOGLE_MAPS_API_KEY: /dev/app/abordo-services/GOOGLE_MAPS_API_KEY
+  TIMBOX_PWD: /dev/app/abordo-services/TIMBOX_PWD
+  FIREBASE_ADMIN_SDK_JSON: /dev/app/abordo-services/FIREBASE_ADMIN_SDK_JSON
+  BRANCH_KEY: /dev/app/abordo-services/BRANCH_KEY

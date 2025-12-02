@@ -1,0 +1,5 @@
+-- 1587568743 UP parcels-packages-tracking-indexes
+CREATE INDEX parcels_packages_tracking_status_idx ON parcels_packages_tracking(status);
+CREATE INDEX parcels_packages_tracking_action_idx ON parcels_packages_tracking(action);
+CREATE INDEX parcels_packages_tracking_is_contingency_idx ON parcels_packages_tracking(is_contingency);
+CREATE INDEX parcels_packages_tracking_created_at_idx ON parcels_packages_tracking(created_at);

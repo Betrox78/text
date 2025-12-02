@@ -1,0 +1,2 @@
+-- 1566492492 UP add-abierto-expires-day-in-generalSettings
+INSERT INTO general_setting(FIELD,type_field, description) VALUES('abierto_expires_days','number', 'Dias de expiración para canjear el boleto abierto');

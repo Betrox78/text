@@ -1,0 +1,3 @@
+-- 1550282790 UP add-allow-pets-parcel-field-in-general-settings-table
+INSERT INTO `general_setting` (`FIELD`, `value`, `type_field`, `required_field`, `description`, `value_default`, `label_text`, `order_field`, `group_type`, `type_setting`)
+VALUES ('allow_pets_parcel', '0', 'boolean', '0', 'Nuestros camiones cuentan con servicio de transporte de mascotas (siempre y cuando la unidad tenga la capacidad)', '0', 'Se cuenta con el servicio de mascotas en paquetería', 0,'pets', '0');

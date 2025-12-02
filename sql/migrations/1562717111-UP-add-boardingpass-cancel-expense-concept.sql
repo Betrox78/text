@@ -1,0 +1,2 @@
+-- 1562717111 UP add boardingpass cancel expense concept
+INSERT INTO expense_concept(name, description, service, action) VALUES('Cancelación de reservación de boletos', 'Cancelación de reservación de boletos', 'boardingpass', 'cancel');

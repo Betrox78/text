@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cfdi:Comprobante xmlns:cfdi="http://www.sat.gob.mx/cfd/4" xmlns:cartaporte31="http://www.sat.gob.mx/CartaPorte31" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" Certificado="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" Exportacion="01" Fecha="2023-11-22T00:00:00" LugarExpedicion="81200" Moneda="MXN" NoCertificado="00001000000707636443" Sello="" SubTotal="0.0" TipoDeComprobante="T" Total="0.0" Version="4.0" xsi:schemaLocation="http://www.sat.gob.mx/cfd/4 http://www.sat.gob.mx/sitio_internet/cfd/4/cfdv40.xsd http://www.sat.gob.mx/CartaPorte31 http://www.sat.gob.mx/sitio_internet/cfd/CartaPorte/CartaPorte31.xsd">
+	<cfdi:Emisor Nombre="ALTREGY CONSULTING" RegimenFiscal="601" Rfc="ACO100422EF5"/>
+	<cfdi:Receptor DomicilioFiscalReceptor="81200" Nombre="ALTREGY CONSULTING" RegimenFiscalReceptor="601" Rfc="ACO100422EF5" UsoCFDI="S01"/>
+	<cfdi:Conceptos>
+	</cfdi:Conceptos>
+	<cfdi:Complemento>
+		<cartaporte31:CartaPorte>
+			<cartaporte31:Ubicaciones>
+			</cartaporte31:Ubicaciones>
+			<cartaporte31:Mercancias>
+			</cartaporte31:Mercancias>
+			<cartaporte31:FiguraTransporte>
+			</cartaporte31:FiguraTransporte>
+		</cartaporte31:CartaPorte>
+	</cfdi:Complemento>
+</cfdi:Comprobante>

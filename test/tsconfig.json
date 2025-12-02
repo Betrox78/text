@@ -1,0 +1,22 @@
+{
+  "compilerOptions": {
+    "module": "commonjs",
+    "declaration": true,
+    "removeComments": true,
+    "esModuleInterop": true,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "target": "es6",
+    "sourceMap": true,
+    "outDir": "dist",
+    "baseUrl": "src",
+    "rootDir": "src",
+    "paths": {
+      "api/*": ["api/*"],
+      "lib/*": ["lib/*"],
+      "test/*": ["test/*"]
+    }
+  },
+  "include": ["src"],
+  "exclude": ["node_modules", "dist", "bin"]
+}

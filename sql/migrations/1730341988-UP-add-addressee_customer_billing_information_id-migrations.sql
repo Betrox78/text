@@ -1,0 +1,9 @@
+-- 1730341988 UP add addressee_customer_billing_information_id migrations
+ALTER TABLE parcels
+ADD COLUMN addressee_customer_billing_information_id INTEGER DEFAULT NULL AFTER addressee_address_id,
+ADD CONSTRAINT parcels_addressee_customer_billing_information_id_fk FOREIGN KEY (addressee_customer_billing_information_id)
+	REFERENCES customer_billing_information(id) ON UPDATE NO ACTION ON DELETE NO ACTION;
+
+ALTER TABLE parcels_init_config
+ADD COLUMN enable_addressee_customer_billing_information_id
+	BOOLEAN DEFAULT FALSE NOT NULL AFTER enable_send_whatsapp_notification;

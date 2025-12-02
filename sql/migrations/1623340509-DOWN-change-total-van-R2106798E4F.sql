@@ -1,0 +1,2 @@
+-- 1623340509 DOWN change-total-van-R2106798E4F
+update rental set amount = 5604.00 , total_amount= 5604.00 , rental_price = 1868.00 , profit = 4831.03 , updated_at = "2021-06-10 16:58:17" , updated_by = (select id from users where email = "igalaviz@allabordo.com" )    where reservation_code = "R2106798E4F"

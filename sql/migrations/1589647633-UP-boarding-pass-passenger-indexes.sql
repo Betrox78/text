@@ -1,0 +1,7 @@
+-- 1589647633 UP boarding-pass-passenger-indexes
+
+CREATE INDEX boarding_pass_passenger_principal_passenger_idx ON boarding_pass_passenger(principal_passenger);
+CREATE INDEX boarding_pass_passenger_is_customer_idx ON boarding_pass_passenger(is_customer);
+CREATE INDEX boarding_pass_passenger_is_child_under_age_idx ON boarding_pass_passenger(is_child_under_age);
+CREATE INDEX boarding_pass_passenger_status_idx ON boarding_pass_passenger(status);
+CREATE INDEX boarding_pass_passenger_created_at_idx ON boarding_pass_passenger(created_at);

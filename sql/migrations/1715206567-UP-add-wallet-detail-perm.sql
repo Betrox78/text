@@ -1,0 +1,2 @@
+-- 1715206567 UP add-wallet-detail-perm
+INSERT INTO `permission` (`name`, `description`, `sub_module_id`, `multiple`, `status`, `created_at`, `created_by`) VALUES ('.detail', 'Ver detalle', '83', '0', '1', '2024-05-08 17:37:23', '1');

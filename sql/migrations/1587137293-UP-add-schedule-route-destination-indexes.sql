@@ -1,0 +1,8 @@
+-- 1587137293 UP add-schedule-route-destination-indexes
+CREATE INDEX schedule_route_destination_status_idx ON schedule_route_destination(status);
+CREATE INDEX schedule_route_destination_destination_status_idx ON schedule_route_destination(destination_status);
+CREATE INDEX schedule_route_destination_travel_date_idx ON schedule_route_destination(travel_date);
+CREATE INDEX schedule_route_destination_arrival_date_idx ON schedule_route_destination(arrival_date);
+CREATE INDEX schedule_route_destination_started_at_idx ON schedule_route_destination(started_at);
+CREATE INDEX schedule_route_destination_finished_at_idx ON schedule_route_destination(finished_at);
+CREATE INDEX schedule_route_destination_created_at_idx ON schedule_route_destination(created_at);

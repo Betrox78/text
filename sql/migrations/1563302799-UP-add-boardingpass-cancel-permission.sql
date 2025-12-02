@@ -1,0 +1,2 @@
+-- 1563302799 UP add boardingpass cancel permission
+INSERT INTO permission(id, name, description, dependency_id, sub_module_id, multiple, created_by) VALUES (172, '#cancel', 'Cancelar boletos', 110, 39, 0, 1);

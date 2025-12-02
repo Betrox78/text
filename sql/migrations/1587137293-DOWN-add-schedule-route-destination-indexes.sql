@@ -1,0 +1,8 @@
+-- 1587137293 DOWN add-schedule-route-destination-indexes
+DROP INDEX schedule_route_destination_status_idx ON schedule_route_destination;
+DROP INDEX schedule_route_destination_destination_status_idx ON schedule_route_destination;
+DROP INDEX schedule_route_destination_travel_date_idx ON schedule_route_destination;
+DROP INDEX schedule_route_destination_arrival_date_idx ON schedule_route_destination;
+DROP INDEX schedule_route_destination_started_at_idx ON schedule_route_destination;
+DROP INDEX schedule_route_destination_finished_at_idx ON schedule_route_destination;
+DROP INDEX schedule_route_destination_created_at_idx ON schedule_route_destination;

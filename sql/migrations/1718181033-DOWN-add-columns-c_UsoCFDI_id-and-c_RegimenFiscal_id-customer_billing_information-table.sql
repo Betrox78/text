@@ -1,0 +1,6 @@
+-- 1718181033 DOWN add columns c_UsoCFDI_id and c_RegimenFiscal_id customer_billing_information table
+ALTER TABLE customer_billing_information
+DROP CONSTRAINT fk_customer_billing_information_c_UsoCFDI_id,
+DROP COLUMN c_UsoCFDI_id,
+DROP CONSTRAINT fk_customer_billing_information_c_RegimenFiscal_id,
+DROP COLUMN c_RegimenFiscal_id;

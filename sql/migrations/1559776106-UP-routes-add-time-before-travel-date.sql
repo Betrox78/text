@@ -1,0 +1,2 @@
+-- 1559776106 UP routes-add-time-before-travel-date
+INSERT INTO general_setting (FIELD, value, type_field, required_field, description, value_default, label_text, order_field, type_setting, group_type, created_by) VALUES ('routes_time_before_travel_date', 30, 'number', 0, 'Minutos de limite para mostrar rutas antes de su horario de salida', 30, 'Minutos previos de consulta de rutas', 10, 1, 'travel', 1);

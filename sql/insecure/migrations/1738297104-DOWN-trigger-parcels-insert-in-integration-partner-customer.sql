@@ -1,0 +1,2 @@
+-- 1738297104 UP integration-partner-customer-address-seed
+DROP TRIGGER IF EXISTS `parcels_AFTER_INSERT_INTEGRATION_PARTNER_CUSTOMER`;

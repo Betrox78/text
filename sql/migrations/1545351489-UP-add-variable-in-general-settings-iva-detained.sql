@@ -1,0 +1,2 @@
+-- 1545351489 UP add-variable-in-general-settings-iva-detained
+INSERT INTO general_setting(FIELD, value, type_field, required_field, description, value_default, label_text, order_field, type_setting, group_type) VALUES('parcel_iva', '4', 'percent', 1, 'Porcentaje de iva retenido para flete en paquetería', '4', 'Porcentaje de iva retenido para flete en paquetería', 12, '0', 'parcel');

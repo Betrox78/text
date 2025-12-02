@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE cfdi:Comprobante [
+        <!ELEMENT cfdi:Comprobante (cfdi:InformacionGlobal|cfdi:Emisor|cfdi:Receptor|cfdi:Conceptos|cfdi:Impuestos|cfdi:Complemento)*>
+        <!ATTLIST cfdi:Comprobante
+                xmlns:cfdi CDATA #REQUIRED
+                xmlns:xsi CDATA #REQUIRED
+                Certificado CDATA #REQUIRED
+                Exportacion CDATA #REQUIRED
+                Fecha CDATA #REQUIRED
+                Folio CDATA #REQUIRED
+                LugarExpedicion CDATA #REQUIRED
+                FormaPago CDATA #REQUIRED
+                MetodoPago CDATA #REQUIRED
+                Moneda CDATA #REQUIRED
+                NoCertificado CDATA #REQUIRED
+                Sello CDATA #REQUIRED
+                Serie CDATA #REQUIRED
+                SubTotal CDATA #REQUIRED
+                TipoDeComprobante CDATA #REQUIRED
+                Descuento CDATA #REQUIRED
+                Total CDATA #REQUIRED
+                Version CDATA #REQUIRED
+                xsi:schemaLocation CDATA #REQUIRED>
+        <!ELEMENT cfdi:InformacionGlobal (#PCDATA)>
+        <!ATTLIST cfdi:InformacionGlobal
+                Periodicidad CDATA #REQUIRED
+                Meses CDATA #REQUIRED
+                Año CDATA #REQUIRED>
+        <!ELEMENT cfdi:Emisor (#PCDATA)>
+        <!ATTLIST cfdi:Emisor
+                Nombre CDATA #REQUIRED
+                RegimenFiscal CDATA #REQUIRED
+                Rfc CDATA #REQUIRED>
+        <!ELEMENT cfdi:Receptor (#PCDATA)>
+        <!ATTLIST cfdi:Receptor
+                Nombre CDATA #REQUIRED
+                Rfc CDATA #REQUIRED
+                UsoCFDI CDATA #REQUIRED
+                RegimenFiscalReceptor CDATA #REQUIRED
+                DomicilioFiscalReceptor CDATA #REQUIRED>
+        <!ELEMENT cfdi:Conceptos (#PCDATA)>
+        <!ELEMENT cfdi:Impuestos (#PCDATA)>
+        <!ELEMENT cfdi:Complemento (#PCDATA)>
+        ]>
+<cfdi:Comprobante xmlns:cfdi="http://www.sat.gob.mx/cfd/4" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" Exportacion="01" Certificado="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" Fecha="2022-01-02T22:36:45" Folio="14" LugarExpedicion="81200" FormaPago="01" MetodoPago="PUE" Moneda="MXN" NoCertificado="00001000000707636443" Sello="" Serie="FV/2021/" SubTotal="0.0" TipoDeComprobante="T" Descuento="0.0" Total="0.0"
+                  Version="4.0" xsi:schemaLocation="http://www.sat.gob.mx/cfd/4 http://www.sat.gob.mx/sitio_internet/cfd/4/cfdv40.xsd">
+    <cfdi:InformacionGlobal Periodicidad="04" Meses="01" Año="2023" />
+    <cfdi:Emisor Nombre="ALTREGY CONSULTING SAPI DE CV" RegimenFiscal="601" Rfc="ACO100422EF5" />
+    <cfdi:Receptor Nombre="PUBLICO EN GENERAL" Rfc="XAXX010101000" UsoCFDI="S01" RegimenFiscalReceptor="616" DomicilioFiscalReceptor="81280" />
+    <cfdi:Conceptos>
+    </cfdi:Conceptos>
+    <cfdi:Impuestos>
+    </cfdi:Impuestos>
+    <cfdi:Complemento>
+    </cfdi:Complemento>
+</cfdi:Comprobante>

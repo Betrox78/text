@@ -1,0 +1,3 @@
+-- 1550282709 UP add-allow-frozen-parcel-field-in-general-settings-table
+INSERT INTO `general_setting` (`FIELD`, `value`, `type_field`, `required_field`, `description`, `value_default`, `label_text`, `order_field`, `group_type`, `type_setting`)
+VALUES ('allow_frozen_parcel', '0', 'boolean', '0', 'Nuestros camiones cuentan con servicio de transporte de carga refrigerada', '0', 'Se cuenta con el servicio de carga refrigerada en paquetería', 0,'frozen', '0');

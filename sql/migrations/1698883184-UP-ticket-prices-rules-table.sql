@@ -1,0 +1,25 @@
+-- 1698883184 UP ticket prices rules table
+CREATE TABLE ticket_prices_rules(
+	id INT(11) PRIMARY KEY AUTO_INCREMENT,
+    init_date DATETIME NOT NULL,
+    end_date DATETIME NOT NULL,
+    base_special_ticket_id INT(11) DEFAULT NULL,
+    percent_increment INT DEFAULT 0,
+    percent_decrement INT DEFAULT 0,
+    return_percent_increment INT DEFAULT 0,
+    return_percent_decrement INT DEFAULT 0,
+    amount_increment INT DEFAULT 0,
+    amount_decrement INT DEFAULT 0,
+    return_amount_increment INT DEFAULT 0,
+    return_amount_decrement INT DEFAULT 0,
+    type_travel ENUM('local', 'foreign') NOT NULL DEFAULT 'local',
+    status TINYINT(4) NOT NULL DEFAULT 1,
+	created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+	created_by INT(11) NOT NULL,
+	updated_at DATETIME NULL DEFAULT NULL,
+	updated_by INT(11) NULL DEFAULT NULL,
+    INDEX ticket_price_rules_composite_idx(init_date, end_date, type_travel),
+	CONSTRAINT fk_base_special_ticket_id FOREIGN KEY (base_special_ticket_id) REFERENCES special_ticket(id) ON DELETE NO ACTION ON UPDATE NO ACTION,
+    CONSTRAINT fk_created_by FOREIGN KEY (created_by) REFERENCES users(id),
+    CONSTRAINT fk_updated_by FOREIGN KEY (updated_by) REFERENCES users(id)
+);

@@ -1,0 +1,9 @@
+-- 1571350552 UP add-in-payment-fields
+ALTER TABLE boarding_pass
+    ADD COLUMN in_payment TINYINT(1) NULL DEFAULT FALSE;
+
+ALTER TABLE parcels
+    ADD COLUMN in_payment TINYINT(1) NULL DEFAULT FALSE;
+
+ALTER TABLE rental
+    ADD COLUMN in_payment TINYINT(1) NULL DEFAULT FALSE;

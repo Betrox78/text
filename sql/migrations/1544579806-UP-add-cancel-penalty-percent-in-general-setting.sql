@@ -1,0 +1,2 @@
+-- 1544579806 UP add-cancel-penalty-percent-in-general-setting
+INSERT INTO general_setting(FIELD, value, type_field, required_field, description, value_default, label_text, explanation_text, order_field, type_setting, group_type, status, created_at, created_by, updated_at, updated_by) VALUES('cancel_penalty_parcel', 30, 'percent', 1, 'Porcentaje de penalización por cancelación de paquetería', 30, '% de penalización de cancelación de paquetería', '', null, 2, 'parcel', 1, NOW(), 1, NOW(), 1);

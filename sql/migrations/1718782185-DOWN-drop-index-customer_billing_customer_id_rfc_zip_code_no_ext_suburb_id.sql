@@ -1,0 +1,3 @@
+-- 1718782185 DOWN drop index customer_billing_customer_id_rfc_zip_code_no_ext_suburb_id
+ALTER TABLE customer_billing_information
+ADD UNIQUE INDEX customer_billing_customer_id_rfc_zip_code_no_ext_suburb_id(customer_id, rfc, zip_code, no_ext, suburb_id);

@@ -1,0 +1,7 @@
+-- 1730341988 DOWN add addressee_customer_billing_information_id migrations
+ALTER TABLE parcels
+DROP CONSTRAINT parcels_addressee_customer_billing_information_id_fk,
+DROP COLUMN addressee_customer_billing_information_id;
+
+ALTER TABLE parcels_init_config
+DROP COLUMN enable_addressee_customer_billing_information_id;

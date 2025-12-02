@@ -1,0 +1,4 @@
+-- 1563295621 UP add rules boardingpass driver in general settings
+INSERT INTO general_setting (FIELD, value, type_field, description, value_default, label_text, explanation_text, type_setting, group_type, created_by) VALUES
+('driver_max_complements', '2', 'number', 'Cantidad de maletas permitidas por boleto vendido por chofer', '2', 'Cantidad de maletas permitidas por boleto vendido por chofer', '', '0', 'travel', 1),
+('driver_extra_cost_complement', '2', 'double', 'Costo extra por complemento en venta de boleto por chofer', '2', 'Costo extra por complemento en venta de boleto por chofer', '', '0', 'travel', 1);

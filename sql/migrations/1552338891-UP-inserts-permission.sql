@@ -1,0 +1,20 @@
+-- 1552338891 UP inserts permission
+INSERT INTO permission (name, description, sub_module_id,dependency_id, created_by) VALUES
+('#create','Crear corte caja','36',null,1),
+('#list','Ver listado','37',null,1),
+('#create','Venta de boletos','38',null,1),
+('#detail','Ver detalle de reservación','39',null,1),
+('#print','Re-impresiones','39','110',1),
+('#checkin','Documentar','40',null,1),
+('#view','Ver calendario','41',null,1),
+('#list','Gestionar rentas','42',null,1),
+('#cancel','Cancelar','42','114',1),
+('#print','Re-impresiones','42','114',1),
+('#create','Registrar renta','43',null,1),
+('#delivery','Registro de entrega de van','44',null,1),
+('#reception','Registro de recepción de van','45',null,1),
+('#create','Documentar paquetería','46',null,1),
+('#detail','Ver detalle de cartas porte','47',null,1),
+('#cancel','Cancelar','47','121',1),
+('#print','Re-impresiones','47','121',1),
+('#delivery','Entrega de paquetería','48',null,1);

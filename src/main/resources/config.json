@@ -1,0 +1,17 @@
+{
+  "url": "jdbc:mysql://localhost:3306/abordo",
+  "driver_class": "com.mysql.jdbc.Driver",
+  "user": "root",
+  "password": "jagg23",
+  "max_pool_size": 100,
+  "httpServerPort": 8480,
+
+  "mail" : {
+    "hostName": "upc.email",
+    "port": 587,
+    "ssl": false,
+    "tls": "DISABLED",
+    "userName": "pktuno@upc.email",
+    "password": "i45nQ@UuUmyR"
+  }
+}

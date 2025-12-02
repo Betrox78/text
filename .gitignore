@@ -1,0 +1,14 @@
+.idea/
+.vscode/
+.vertx/
+.settings/
+
+target/
+
+*.class
+*.jar
+*.iml
+
+.classpath
+.project
+.env*

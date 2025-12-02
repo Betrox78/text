@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cfdi:Comprobante
+  xsi:schemaLocation="http://www.sat.gob.mx/cfd/4 http://www.sat.gob.mx/sitio_internet/cfd/4/cfdv40.xsd http://www.sat.gob.mx/Pagos20 http://www.sat.gob.mx/sitio_internet/cfd/Pagos/Pagos20.xsd"
+  Version="4.0"
+  Fecha=""
+  Sello=""
+  NoCertificado="00001000000707636443"
+  Certificado="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"
+  SubTotal="0"
+  Moneda="XXX"
+  Total="0"
+  TipoDeComprobante="P"
+  Exportacion="01"
+  Serie=""
+  Folio=""
+  LugarExpedicion=""
+  xmlns:cfdi="http://www.sat.gob.mx/cfd/4"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns:pago20="http://www.sat.gob.mx/Pagos20"
+>
+  <cfdi:Emisor Nombre="" RegimenFiscal="" Rfc="" />
+  <cfdi:Receptor Rfc="" Nombre="" DomicilioFiscalReceptor="" RegimenFiscalReceptor="" UsoCFDI="" />
+  <cfdi:Conceptos>
+  </cfdi:Conceptos>
+  <cfdi:Complemento>
+    <pago20:Pagos Version="2.0">
+      <pago20:Totales TotalRetencionesIVA="" TotalTrasladosBaseIVA16="" TotalTrasladosImpuestoIVA16="" MontoTotalPagos="" />
+      <pago20:Pago FechaPago="" FormaDePagoP="" MonedaP="" TipoCambioP="" Monto="">
+        <pago20:DoctoRelacionado IdDocumento="" MonedaDR="" EquivalenciaDR="" NumParcialidad="" ImpSaldoAnt="" ImpPagado="" ImpSaldoInsoluto="" ObjetoImpDR="">
+          <pago20:ImpuestosDR>
+            <pago20:RetencionesDR>
+              <pago20:RetencionDR BaseDR="" ImpuestoDR="002" TipoFactorDR="Tasa" TasaOCuotaDR="0.040000" ImporteDR="" />
+            </pago20:RetencionesDR>
+            <pago20:TrasladosDR>
+              <pago20:TrasladoDR BaseDR="" ImpuestoDR="002" TipoFactorDR="Tasa" TasaOCuotaDR="0.160000" ImporteDR="" />
+            </pago20:TrasladosDR>
+          </pago20:ImpuestosDR>
+        </pago20:DoctoRelacionado>
+        <pago20:ImpuestosP>
+          <pago20:RetencionesP>
+            <pago20:RetencionP ImpuestoP="002" ImporteP="" />
+          </pago20:RetencionesP>
+          <pago20:TrasladosP>
+            <pago20:TrasladoP BaseP="" ImpuestoP="002" TipoFactorP="Tasa" TasaOCuotaP="0.160000" ImporteP="" />
+          </pago20:TrasladosP>
+        </pago20:ImpuestosP>
+      </pago20:Pago>
+    </pago20:Pagos>
+  </cfdi:Complemento>
+</cfdi:Comprobante>

@@ -1,0 +1,3 @@
+-- 1657919706 UP routes_time_before_travel_date_pos
+
+INSERT INTO `general_setting` (`id`, `FIELD`, `value`, `type_field`, `required_field`, `description`, `value_default`, `label_text`, `explanation_text`, `order_field`, `type_setting`, `group_type`, `status`, `created_at`, `created_by`, `updated_at`, `updated_by`) VALUES ('81', 'routes_time_before_travel_date_pos', '30', 'number', '0', 'POS Minutos de limite para mostrar rutas antes de su horario de salida', '30', 'POS cliente Minutos previos de consulta de rutas', '', '14', '0', 'travel', '1', '2022-07-15 15:31:29', '1', '2020-03-12 16:26:52', '1');

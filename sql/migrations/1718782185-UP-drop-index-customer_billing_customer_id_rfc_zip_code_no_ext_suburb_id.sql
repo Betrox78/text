@@ -1,0 +1,3 @@
+-- 1718782185 UP drop index customer_billing_customer_id_rfc_zip_code_no_ext_suburb_id
+ALTER TABLE customer_billing_information
+DROP INDEX customer_billing_customer_id_rfc_zip_code_no_ext_suburb_id;

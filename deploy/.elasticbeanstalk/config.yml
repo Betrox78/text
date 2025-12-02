@@ -1,0 +1,19 @@
+branch-defaults:
+  default:
+    environment: develop-api-abordo
+environment-defaults:
+  develop-api-abordo:
+    branch: null
+    repository: null
+global:
+  application_name: abordo-api
+  default_ec2_keyname: abordo
+  default_platform: Java 8
+  default_region: us-west-2
+  include_git_submodules: true
+  instance_profile: null
+  platform_name: null
+  platform_version: null
+  profile: eb-cli 
+  sc: null
+  workspace_type: Application

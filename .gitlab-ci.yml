@@ -1,0 +1,497 @@
+stages:
+  - bin:build
+  - bin:delivery
+  - test:db:clone
+  - test:api:deploy
+  - test:api:test
+  - api:approve
+  - db:migrate
+  - api:apply
+  - api:deploy
+  - api:test
+
+build:
+  stage: bin:build
+  image: maven:3-amazoncorretto-8
+  cache:
+    key: abordo-build-cache
+    paths:
+      - .m2/
+  variables:
+    MAVEN_OPTS: "-Dmaven.repo.local=.m2/repository -Xmx2048m"
+  script:
+    - mvn clean compile test
+  only:
+    refs:
+      - merge_requests
+
+.build_docker: &build_docker_definition
+  stage: bin:build
+  image: docker:20.10.18
+  tags:
+    - docker
+    - shell
+  script:
+    - |-
+      CHECK_IMAGE="no such manifest"
+      AWS_ECR_REPOSITORY_URL=$AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com
+      REPOSITORY_NAME=abordo/services
+      LOCAL_IMAGE=$REPOSITORY_NAME:$CI_COMMIT_SHA
+      REMOTE_IMAGE=$AWS_ECR_REPOSITORY_URL/$REPOSITORY_NAME:$CI_COMMIT_SHA
+
+      if [[ "$DELIVERY_IMAGE" = "true" ]]; then
+      aws ecr get-login-password \
+        --region $AWS_DEFAULT_REGION | docker login \
+        --username AWS \
+        --password-stdin $AWS_ECR_REPOSITORY_URL
+
+      set +e
+      CHECK_IMAGE=$(docker manifest inspect $REMOTE_IMAGE 2>&1 > /dev/null)
+      set -e
+      fi
+
+      if [[ "$CHECK_IMAGE" =~ "no such manifest" ]]; then
+
+        docker build . \
+          -t $LOCAL_IMAGE;
+
+        if [[ "$DELIVERY_IMAGE" = "true" ]]; then
+          docker tag $LOCAL_IMAGE $REMOTE_IMAGE;
+          docker push $REMOTE_IMAGE;
+        fi
+
+      fi
+
+.apply_docker: &apply_docker_definition
+  stage: api:apply
+  image: edgardoalz/devops-cli:latest
+  script:
+    - devops-cli service apply $CI_PROJECT_NAME-$DEPLOYMENT_GROUP $CI_COMMIT_SHA --file deploy/$ENV_TAG/base.yml --file deploy/$ENV_TAG/$DEPLOYMENT_GROUP.yml --env-tag $ENV_TAG > task-definition-$DEPLOYMENT_GROUP-$CI_COMMIT_SHA.json
+  artifacts:
+    paths:
+      - task-definition-$DEPLOYMENT_GROUP-$CI_COMMIT_SHA.json
+  needs: ["delivery:docker"]
+
+.deploy_docker: &deploy_docker_definition
+  stage: api:deploy
+  image: amazon/aws-cli:latest
+  tags:
+    - docker
+    - shell
+  script:
+    - CLUSTER="ecs-cluster-${ENV_TAG}"
+    - SERVICE="$CI_PROJECT_NAME-${DEPLOYMENT_GROUP}-${ENV_TAG}"
+    - REVISION=$(aws ecs register-task-definition --cli-input-json file://"$(pwd)/task-definition-$DEPLOYMENT_GROUP-$CI_COMMIT_SHA.json" --output text --query 'taskDefinition.taskDefinitionArn')
+    - aws ecs update-service --cluster "${CLUSTER}" --service "${SERVICE}" --task-definition "${REVISION}"
+    - aws ecs wait services-stable --cluster $CLUSTER --services $SERVICE
+
+.test_template: &test_definition
+  stage: api:test
+  image: node:erbium
+  cache:
+    key: abordo-test-cache
+    paths:
+      - test/node_modules
+  script:
+    - cd test
+    - yarn
+    - yarn test
+  dependencies: []
+
+.build_template: &build_definition
+  stage: bin:build
+  image: maven:3-amazoncorretto-8
+  cache:
+    key: abordo-build-cache
+    paths:
+      - .m2/
+  script:
+    - mvn clean package
+    - tar -czvf ${CI_COMMIT_REF_NAME}-${CI_COMMIT_SHA}.tar.gz {target/**/*.jar,target/*.jar}
+  artifacts:
+    paths:
+      - ${CI_COMMIT_REF_NAME}-${CI_COMMIT_SHA}.tar.gz
+
+.migrate_template: &migrate_definition
+  stage: db:migrate
+  image: edgardoalz/node-mysql
+  cache:
+    key: abordo-migrate-cache
+    paths:
+      - sql/node_modules/
+  script:
+    - cd sql
+    - yarn
+    - yarn migrate
+    # - cd insecure
+    # - chmod u+x migrate.sh && ./migrate.sh
+  dependencies: []
+
+.deploy_template: &deploy_definition
+  stage: api:deploy
+  image: edgardoalz/python-awsebcli
+  script:
+    - tar -xvzf ${CI_COMMIT_REF_NAME}-${CI_COMMIT_SHA}.tar.gz
+    - cp -R target/*.jar deploy/
+    - cp -R target/libs/*.jar deploy/libs/
+    - cp -R files/* deploy/files/
+    - cd deploy
+    - chmod u+x ./.varconfig.sh && ./.varconfig.sh
+    - chmod u+x ./.ebconfig.sh && ./.ebconfig.sh
+    - eb deploy ${AWS_EB_ENV}
+
+bin:build:develop:
+  <<: *build_docker_definition
+  variables:
+    DELIVERY_IMAGE: "true"
+  only:
+    - develop
+
+db:migrate:develop:
+  <<: *migrate_definition
+  variables:
+    DB_HOST: $DB_HOST_DEV
+    DB_USER: $DB_USER_DEV
+    DB_DRIVER: mysql
+    DB_PORT: 3306
+    DB_NAME: $DB_NAME_DEV
+    DB_PASSWORD: $DB_PASSWORD_DEV
+  only:
+    - develop
+  needs: ['bin:build:develop']
+
+apply:docker:buses:develop:
+  <<: *apply_docker_definition
+  variables:
+    DEPLOYMENT_GROUP: buses
+    ENV_TAG: dev
+  only:
+    - develop
+  needs: ["db:migrate:develop"]
+
+deploy:docker:buses:develop:
+  <<: *deploy_docker_definition
+  environment:
+    name: develop
+  variables:
+    DEPLOYMENT_GROUP: buses
+    ENV_TAG: dev
+  only:
+    - develop
+  needs: ["apply:docker:buses:develop"]
+
+apply:docker:general:develop:
+  <<: *apply_docker_definition
+  variables:
+    DEPLOYMENT_GROUP: general
+    ENV_TAG: dev
+  only:
+    - develop
+  needs: ["db:migrate:develop"]
+
+deploy:docker:general:develop:
+  <<: *deploy_docker_definition
+  environment:
+    name: develop
+  variables:
+    DEPLOYMENT_GROUP: general
+    ENV_TAG: dev
+  only:
+    - develop
+  needs: ["apply:docker:general:develop"]
+
+apply:docker:invoices:develop:
+  <<: *apply_docker_definition
+  variables:
+    DEPLOYMENT_GROUP: invoices
+    ENV_TAG: dev
+  only:
+    - develop
+  needs: ["db:migrate:develop"]
+
+deploy:docker:invoices:develop:
+  <<: *deploy_docker_definition
+  environment:
+    name: develop
+  variables:
+    DEPLOYMENT_GROUP: invoices
+    ENV_TAG: dev
+  only:
+    - develop
+  needs: ["apply:docker:invoices:develop"]
+
+apply:docker:parcels:develop:
+  <<: *apply_docker_definition
+  variables:
+    DEPLOYMENT_GROUP: parcels
+    ENV_TAG: dev
+  only:
+    - develop
+  needs: ["db:migrate:develop"]
+
+deploy:docker:parcels:develop:
+  <<: *deploy_docker_definition
+  environment:
+    name: develop
+  variables:
+    DEPLOYMENT_GROUP: parcels
+    ENV_TAG: dev
+  only:
+    - develop
+  needs: ["apply:docker:parcels:develop"]
+
+apply:docker:users:develop:
+  <<: *apply_docker_definition
+  variables:
+    DEPLOYMENT_GROUP: users
+    ENV_TAG: dev
+  only:
+    - develop
+  needs: ["db:migrate:develop"]
+
+deploy:docker:users:develop:
+  <<: *deploy_docker_definition
+  environment:
+    name: develop
+  variables:
+    DEPLOYMENT_GROUP: users
+    ENV_TAG: dev
+  only:
+    - develop
+  needs: ["apply:docker:users:develop"]
+
+apply:docker:vans:develop:
+  <<: *apply_docker_definition
+  variables:
+    DEPLOYMENT_GROUP: vans
+    ENV_TAG: dev
+  only:
+    - develop
+  needs: ["db:migrate:develop"]
+
+deploy:docker:vans:develop:
+  <<: *deploy_docker_definition
+  environment:
+    name: develop
+  variables:
+    DEPLOYMENT_GROUP: vans
+    ENV_TAG: dev
+  only:
+    - develop
+  needs: ["apply:docker:vans:develop"]
+
+bin:build:staging:
+  <<: *build_definition
+  variables:
+    MAVEN_OPTS: "-Dmaven.repo.local=.m2/repository"
+  only:
+    - staging
+
+db:migrate:staging:
+  <<: *migrate_definition
+  environment:
+    name: staging
+  variables:
+    DB_HOST: $DB_HOST_STAGE
+    DB_USER: $DB_USER_STAGE
+    DB_DRIVER: mysql
+    DB_PORT: 3306
+    DB_NAME: $DB_NAME_STAGE
+    DB_PASSWORD: $DB_PASSWORD_STAGE
+  only:
+    - staging
+  needs: ['bin:build:staging']
+
+api:deploy:staging:
+  <<: *deploy_definition
+  environment:
+    name: staging
+  variables:
+    AWS_EB_ENV: "abordo-api-stg"
+    API_DB_SERVER_URL: $API_DB_SERVER_URL_STAGE
+    API_AUTH_SERVER_HOST: "auth.stg.ptxpaqueteria.com"
+    API_AUTH_SERVER_PORT: "80"
+    WEB_SERVER_HOSTNAME: "https://stg.ptxpaqueteria.com"
+    SELF_SERVER_HOST: "api.stg.ptxpaqueteria.com"
+    INVOICE_SERVER_HOST: "api.cfdi.ptxpaqueteria.com"
+    CONEKTA_API_KEY: $CONEKTA_API_KEY_STAGE
+    GOOGLE_MAPS_API_KEY: $GOOGLE_MAPS_API_KEY_STAGE
+    MONGODB_HOST: $MONGODB_HOST_STAGE
+    MONGODB_PORT: "27017"
+    MONGODB_NAME: $MONGODB_NAME_STAGE
+    INVOICE_FILE_HOST: "https://media.stg.ptxpaqueteria.com/api/v1.0.0/document"
+    SNS_TOPIC_INVOICE: "FacturacionSNSTopicStaging"
+    SNS_TOPIC_CUSTOMER: "CteProvedorSNSTopicStaging"
+    FIREBASE_ADMIN_SDK_JSON: $FIREBASE_ADMIN_SDK_JSON_STAGE
+    BRANCH_KEY: $BRANCH_KEY_STAGE
+    VALIDATE_PERIOD_INVOICE: "false"
+    REGISTER_INVOICES: "true"
+    DOUBLE_INVOICING: "true"
+    INVOICE_PARCEL_SERVER_HOST: "ptx.cfdi.ptxpaqueteria.com"
+    INVOICE_PREFIX: "STG"
+    CUSTOMER_INVOICE_PREFIX: "S"
+    INVOICE_PARCEL_PREFIX: "STGPTX"
+    RFC_PARCEL: "XIA190128J61"
+    RFC_BOARDINGPASS: "XIA190128J61"
+    RFC_NAME_PARCEL: "XENON INDUSTRIAL ARTICLES"
+    RFC_NAME_BOARDINGPASS: "XENON INDUSTRIAL ARTICLES"
+    PARCEL_DESTINATION_NAME: "PTX PAQUETERIA"
+    PARCEL_DESTINATION_RFC: "PPA190515V16"
+    TIMBOX_PWD: $TIMBOX_PWD_STAGE
+    TIMBOX_URL: "https://staging.ws.timbox.com.mx/"
+    BOARDINGPASS_KEYPEM_PATH: "/pruebas/pasaje.key.pem"
+    PARCEL_KEYPEM_PATH: "/pruebas/pasaje.key.pem"
+    INVOICE_INCOME_BASE: "/pruebas/factura_ingreso_4.xml"
+    INVOICE_INCOME_PARCEL: "/pruebas/factura_ingreso_4.xml"
+    INVOICE_CCP_BASE: "/pruebas/factura_traslado_ccp.xml"
+    INVOICE_LAST_MILE_BASE: "/pruebas/factura_traslado_ultima_milla.xml"
+    PAYMENT_COMPLEMENT_BASE: "/pruebas/complemento_pago.xml"
+    API_MAIL_HOSTNAME: "smtp.office365.com"
+    API_MAIL_PORT: "587"
+    API_MAIL_SSL: "false"
+    API_MAIL_TLS: "REQUIRED"
+    API_MAIL_USERNAME: $API_MAIL_USERNAME_STAGE
+    API_MAIL_PASSWORD: $API_MAIL_PASSWORD_STAGE
+    API_HTTP_SERVER_PORT: "5000"
+    API_DB_SERVER_DRIVER: "com.mysql.jdbc.Driver"
+    API_DB_SERVER_MAX_POOL_SIZE: "7"
+    API_DB_SERVER_MIN_POOL_SIZE: "1"
+    API_DB_SERVER_INI_POOL_SIZE: "1"
+    API_DB_SERVER_MAX_STATEMENTS: "3"
+    API_DB_SERVER_MAX_STATEMENTS_PER_CONNECTION: "0"
+    API_DB_SERVER_MAX_IDLE_TIME: "7200"
+  only:
+    - staging
+  needs: ['bin:build:staging', 'db:migrate:staging']
+
+# api:test:staging:
+#   <<: *test_definition
+#   variables:
+#     ABORDO_POS_USER: $ABORDO_POS_USER_STAGE
+#     ABORDO_POS_PASSWORD: $ABORDO_POS_PASSWORD_STAGE
+#     ABORDO_ADMIN_USER: $ABORDO_ADMIN_USER_STAGE
+#     ABORDO_ADMIN_PASSWORD: $ABORDO_ADMIN_PASSWORD_STAGE
+#     API_HOST_URL: $API_HOST_URL_STAGE
+#   only:
+#     - staging
+#   needs: ['api:deploy:staging']
+
+bin:build:production:
+  <<: *build_definition
+  variables:
+    MAVEN_OPTS: "-Dmaven.repo.local=.m2/repository -Xmx2048m"
+  only:
+    - master
+
+db:migrate:production:
+  <<: *migrate_definition
+  when: manual
+  environment:
+    name: production
+  variables:
+    DB_HOST: $DB_HOST_PRODUCTION
+    DB_USER: $DB_USER_PRODUCTION
+    DB_DRIVER: mysql
+    DB_PORT: 3306
+    DB_NAME: $DB_NAME_PRODUCTION
+    DB_PASSWORD: $DB_PASSWORD_PRODUCTION
+  only:
+    - master
+  needs: ['bin:build:production']
+
+api:deploy:production:
+  <<: *deploy_definition
+  environment:
+    name: production
+  variables:
+    AWS_EB_ENV: "production-api-abordo"
+    API_DB_SERVER_URL: $API_DB_SERVER_URL_PRODUCTION
+    API_AUTH_SERVER_HOST: "auth.ptxpaqueteria.com"
+    API_AUTH_SERVER_PORT: "80"
+    WEB_SERVER_HOSTNAME: "https://www.ptxpaqueteria.com"
+    SELF_SERVER_HOST: "api.ptxpaqueteria.com"
+    INVOICE_SERVER_HOST: "api.cfdi.ptxpaqueteria.com"
+    CONEKTA_API_KEY: $CONEKTA_API_KEY_PRODUCTION
+    GOOGLE_MAPS_API_KEY: $GOOGLE_MAPS_API_KEY_PRODUCTION
+    MONGODB_HOST: $MONGODB_HOST_PRODUCTION
+    MONGODB_PORT: "27017"
+    MONGODB_NAME: $MONGODB_NAME_PRODUCTION
+    INVOICE_FILE_HOST: "https://media.ptxpaqueteria.com/api/v1.0.0/document"
+    SNS_TOPIC_INVOICE: "FacturacionSNSTopicProduction"
+    SNS_TOPIC_CUSTOMER: "CteProvedorSNSTopicProduction"
+    FIREBASE_ADMIN_SDK_JSON: $FIREBASE_ADMIN_SDK_JSON_PRODUCTION
+    BRANCH_KEY: $BRANCH_KEY_PRODUCTION
+    VALIDATE_PERIOD_INVOICE: "true"
+    REGISTER_INVOICES: "true"
+    DOUBLE_INVOICING: "true"
+    INVOICE_PARCEL_SERVER_HOST: "ptx.cfdi.ptxpaqueteria.com"
+    INVOICE_PREFIX: "SYS"
+    CUSTOMER_INVOICE_PREFIX: "C"
+    INVOICE_PARCEL_PREFIX: "PTX"
+    RFC_PARCEL: "ACA170911HY7"
+    RFC_BOARDINGPASS: "ACA170911HY7"
+    RFC_NAME_PARCEL: "AUTOTRANSPORTES Y CARGA PTX"
+    RFC_NAME_BOARDINGPASS: "AUTOTRANSPORTES Y CARGA PTX"
+    PARCEL_DESTINATION_NAME: "AUTOTRANSPORTES Y CARGA PTX"
+    PARCEL_DESTINATION_RFC: "ACA170911HY7"
+    TIMBOX_PWD: $TIMBOX_PWD_PRODUCTION
+    TIMBOX_URL: "https://sistema.timbox.com.mx/"
+    BOARDINGPASS_KEYPEM_PATH: "abordo.key.pem"
+    PARCEL_KEYPEM_PATH: "ptx.key.pem"
+    INVOICE_INCOME_BASE: "factura_ingreso_boleto.xml"
+    INVOICE_INCOME_PARCEL: "factura_ingreso_4.xml"
+    INVOICE_CCP_BASE: "factura_traslado_ccp.xml"
+    INVOICE_LAST_MILE_BASE: "factura_traslado_ultima_milla.xml"
+    PAYMENT_COMPLEMENT_BASE: "complemento_pago.xml"
+    API_MAIL_HOSTNAME: "smtp.office365.com"
+    API_MAIL_PORT: "587"
+    API_MAIL_SSL: "false"
+    API_MAIL_TLS: "REQUIRED"
+    API_MAIL_USERNAME: $API_MAIL_USERNAME_PRODUCTION
+    API_MAIL_PASSWORD: $API_MAIL_PASSWORD_PRODUCTION
+    API_HTTP_SERVER_PORT: "5000"
+    API_DB_SERVER_DRIVER: "com.mysql.jdbc.Driver"
+    API_DB_SERVER_MAX_POOL_SIZE: "50"
+    API_DB_SERVER_MIN_POOL_SIZE: "3"
+    API_DB_SERVER_INI_POOL_SIZE: "3"
+    API_DB_SERVER_MAX_STATEMENTS: "3"
+    API_DB_SERVER_MAX_STATEMENTS_PER_CONNECTION: "0"
+    API_DB_SERVER_MAX_IDLE_TIME: "7200"
+  only:
+    - master
+  needs: ['bin:build:production', 'db:migrate:production']
+
+db:clone:database:
+  <<: *migrate_definition
+  stage: test:db:clone
+  environment:
+    name: staging
+  variables:
+    DB_HOST: $DB_HOST_STAGE
+    DB_USER: $DB_USER_STAGE
+    DB_DRIVER: mysql
+    DB_PORT: 3306
+    DB_NAME: $DB_NAME_STAGE
+    DB_PASSWORD: $DB_PASSWORD_STAGE
+  before_script:
+    - mysqldump -u$DB_USER_PRODUCTION -p$DB_PASSWORD_PRODUCTION --single-transaction --quick --lock-tables=false --verbose -h $DB_HOST_PRODUCTION $DB_NAME_PRODUCTION > dump.sql
+    - sed "s/$DB_USER_PRODUCTION/$DB_USER_STAGE/" dump.sql > dump-test.sql
+    - mysql -u$DB_USER_STAGE -p$DB_PASSWORD_STAGE -h $DB_HOST_STAGE -e "DROP DATABASE $DB_NAME_STAGE;"
+    - mysql -u$DB_USER_STAGE -p$DB_PASSWORD_STAGE -h $DB_HOST_STAGE -e "CREATE DATABASE $DB_NAME_STAGE;"
+    - mysql -u$DB_USER_STAGE -p$DB_PASSWORD_STAGE -h $DB_HOST_STAGE $DB_NAME_STAGE < dump-test.sql && rm -f dump*.sql
+    - mysql -u$DB_USER_STAGE -p$DB_PASSWORD_STAGE -h $DB_HOST_STAGE -e "UPDATE users SET pass='$ABORDO_USER_PASSWORD_HASHED' WHERE user_type IN('A', 'S');" $DB_NAME_STAGE
+  only:
+    - database
+
+# workflow:
+#   image: edgardoalz/devops-workflow:latest
+#   before_script: []
+#   stage: bin:build
+#   variables:
+#     GIT_STRATEGY: none
+#   script:
+#     - TARGET_BRANCH=develop merge-request.sh
+#     - TARGET_BRANCH=staging merge-request.sh
+#   except:
+#     - develop
+#     - staging

@@ -1,0 +1,6 @@
+-- 1587151664 UP contpaq-add-indexes
+
+CREATE INDEX CONTPAQ_ClientesProvedores_estatusServicio_idx ON CONTPAQ_ClientesProvedores(estatusServicio);
+CREATE INDEX CONTPAQ_Documentos_estatusServicio_idx ON CONTPAQ_Documentos(estatusServicio);
+CREATE INDEX CONTPAQ_Movimientos_estatusServicio_idx ON CONTPAQ_Movimientos(estatusServicio);
+CREATE INDEX CONTPAQ_Productos_estatusServicio_idx ON CONTPAQ_Productos(estatusServicio);

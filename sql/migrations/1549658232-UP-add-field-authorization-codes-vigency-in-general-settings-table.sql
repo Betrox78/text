@@ -1,0 +1,2 @@
+-- 1549658232 UP add-field-authorization-codes-vigency-in-general-settings-table
+INSERT INTO general_setting (FIELD, value, type_field, required_field, description, value_default, label_text, type_setting, group_type) VALUES ('authorization_codes_vigency', '2', 'number', '1', 'Horas de vigencia de un código de autorización', '2', 'Horas de vigencia de un código de autorización', '0', 'general');

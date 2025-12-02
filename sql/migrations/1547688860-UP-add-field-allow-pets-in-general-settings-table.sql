@@ -1,0 +1,2 @@
+-- 1547688860 UP add-field-allow-pets-in-general-settings-table
+INSERT INTO general_setting(FIELD, value, type_field, required_field, description, value_default, label_text, order_field, type_setting, group_type) VALUES('allow_pets', '1','boolean', 0, 'Nuestros camiones cuentan con servicio de transporte de mascotas (siempre y cuando la unidad tenga la capacidad)', '1','Se cuenta con el servicio de mascotas', 15, '0', 'pets');
